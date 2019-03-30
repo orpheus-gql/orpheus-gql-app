@@ -7,6 +7,7 @@ import styles from './styles/main.scss';
 
 // import main container
 import MainContainer from './containers/MainContainer.jsx';
+import SecondContainer from './containers/SecondContainer.jsx'
 
 const mapStateToProps = (store) => ({
 })
@@ -27,6 +28,7 @@ class App extends Component {
     return (
       <div>
         <MainContainer />
+        <SecondContainer/>
       </div>
     )
   }
