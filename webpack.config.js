@@ -1,5 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
+const CLIENT_DIR = path.resolve(__dirname, './client');
+const MONACO_DIR = path.resolve(__dirname, './node_modules/monaco-editor');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -13,6 +16,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?/,
+
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
@@ -23,13 +27,19 @@ module.exports = {
       },
       {
         test: /\.scss$/,
+        include: CLIENT_DIR,
         exclude: /(node_modules|bower_components)/,
         use: [
           'style-loader',
           'css-loader',
           'sass-loader'
         ]
-      }, 
+      },
+      {
+        test: /\.css$/,
+        include: MONACO_DIR,
+        use: ['style-loader', 'css-loader'],
+      }
     ]
   },
   devServer: {
@@ -43,4 +53,10 @@ module.exports = {
       hot: true
     }
   },
+  plugins: [
+    new MonacoWebpackPlugin({
+      // available options are documented at https://github.com/Microsoft/monaco-editor-webpack-plugin#options
+      languages: ['json']
+    })
+  ]
 };
