@@ -1,59 +1,28 @@
 import React from 'react';
-import { render } from 'react-dom';
-import MonacoEditor from 'react-monaco-editor';
-import { updateCodeEditorInput } from '../actions/actions';
+import brace from 'brace';
+import AceEditor from 'react-ace';
+
+import 'brace/mode/javascript';
+import 'brace/theme/github';
 
 
-class QueryEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      'code': ''
-    }
-  }
-  editorDidMount(editor, monaco) {
-    // console.log('editorDidMount', editor);
-    // editor.focus();
-    // <MonacoEditor ref="monaco"/>
-  }
-  onChange(newValue, e) {
-    // console.log('onChange', newValue, e);
-    this.setState((prevState, props)=> {
-      return {
-        code: newValue
-      }
-    })
-  }
-  render() {
-    // console.log(monaco.editor)
-    // var model = monaco.editor.createModel('wisdom')
-    // const value = model.getValue();
-    // console.log(value)
-    // const model = monaco.editor.getModel();
-    // const value = model.getValue();
-    // console.log(model)
-    // console.log(value)
 
-    return (
-      <MonacoEditor
-        height="400"
-        language="javascript"
-        theme="vs-light"
-        value={this.codeEditorInput}
-        options={{ 
-        language: "javascript", 
-        minimap: { enabled: false }, 
-        showUnused: true, 
-        wordWrap: "on", 
-        autoIndent: true, 
-        fontSize: 16, 
-        formatOnPaste: true, 
-        formatOnType: true }}
-        onChange={this.onChange}
-        editorDidMount={this.editorDidMount}
+const QueryWrapper = props => {
+  function onChange(newValue) {
+    props.updateCodeInput(newValue);
+  }
+  return (
+    <div>
+      <AceEditor
+        mode="javascript"
+        theme="github"
+        onChange={onChange}
+        value={props.codeInput}
+        name="UNIQUE_ID_OF_DIV"
+        editorProps={{ $blockScrolling: true }}
       />
-    );
-  }
-}
+    </div>
+  )
+};
 
-export default QueryEditor
+export default QueryWrapper;
