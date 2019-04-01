@@ -36,6 +36,7 @@
     "monaco-editor-webpack-plugin": "^1.7.0",
     "node-sass": "^4.11.0",
     "react": "^16.8.4",
+    "react-ace": "^6.4.0",
     "react-dom": "^16.8.4",
     "react-monaco-editor": "^0.25.1",
     "react-redux": "^6.0.1",

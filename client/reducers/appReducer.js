@@ -6,8 +6,7 @@ const initialState = {
   dataPointsValue: null,
   nestingDepthValue: null,
   networkLatency: null,
-  effectiveRuntime: null,
-  codeEditorInput: '',
+  effectiveRuntime: null
 }
 
 const appReducer = (state = initialState, action) => {
@@ -19,12 +18,6 @@ const appReducer = (state = initialState, action) => {
         codeInput: action.payload
       }
 
-    case types.UPDATE_CODE_EDITOR_INPUT:
-      return {
-        ...state,
-        codeEditorInput: action.payload
-      }
-    
     case types.SET_DATABASE_REQUESTS:
       return {
         ...state,
