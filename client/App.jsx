@@ -6,8 +6,11 @@ import { connect } from 'react-redux';
 import styles from './styles/main.scss';
 
 // import main container
-import MainContainer from './containers/MainContainer.jsx';
-import SecondContainer from './containers/SecondContainer.jsx'
+// import MainContainer from './containers/MainContainer.jsx';
+// import SecondContainer from './containers/SecondContainer.jsx';
+import Header from './components/Header.jsx';
+import QueryContainer from './containers/QueryContainer.jsx'
+import ResultsContainer from './containers/ResultsContainer.jsx'
 
 const mapStateToProps = (store) => ({
 })
@@ -27,8 +30,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <MainContainer />
-        <SecondContainer />
+        <Header />
+        <QueryContainer />
+        <ResultsContainer />
       </div>
     )
   }

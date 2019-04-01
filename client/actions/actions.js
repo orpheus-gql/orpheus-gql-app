@@ -7,6 +7,11 @@ export const updateCodeInput = (value) => ({
   payload: value,
 });
 
+export const updateCodeEditorInput = (value) => ({
+  type: types.UPDATE_CODE_EDITOR_INPUT,
+  payload: value,
+});
+
 export const setDatabaseRequests = (value) => ({
   type: types.SET_DATABASE_REQUESTS,
   payload: value,
