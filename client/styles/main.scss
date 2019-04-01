@@ -21,7 +21,16 @@ html {
   text-align: center;
 }
 
-#resolver h1{
-  color: #444;
+#result-item{
+  width: 175px;
+  border: 15px solid rgb(0, 41, 128);
+  padding: 25px;
+  margin: 25px;
   text-align: center;
+  box-sizing: border-box
+}
+
+img {
+  width: 100%;
+  height: auto;
 }

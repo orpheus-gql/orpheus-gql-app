@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const CLIENT_DIR = path.resolve(__dirname, './client');
+const CLIENT_DIR = path.resolve(__dirname, './client'); // created to seperate web app css from monaco css
 const MONACO_DIR = path.resolve(__dirname, './node_modules/monaco-editor');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
