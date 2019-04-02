@@ -19,48 +19,38 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = dispatch => ({
 })
 
-class App extends Component {
+const App = props => {
 
-  constructor(props) {
-    super(props);
+
+
+  const getCode = () => {
+    return props.codeInput;
   }
 
+  const sendQuery = () => {
+    const code = getCode();
+    console.log(code);
+    const cleanCode = code.replace(/\s/g, "")
+    // const codeJSON = JSON.parse(code);
+    console.log(cleanCode);
 
-  render() {
-    const getCode = () => {
-      return props.codeInput;
-    }
-
-    const sendQuery = () => {
-      const code = getCode();
-      console.log(code);
-      const cleanCode = code.replace(/\s/g, "")
-      // const codeJSON = JSON.parse(code);
-      console.log(cleanCode);
-
-      fetch(`http://localhost:8080/orpheus/graphql?query=` + cleanCode)
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (myJson) {
-          console.log(myJson);
-        });
-    }
-
-    function onChange(newValue) {
-      props.updateCodeInput(newValue);
-    }
-
-    return (
-      <div>
-        <Header />
-        <div id="content">
-          <QueryContainer />
-          <button className="waves-effect waves-light btn-large" onClick={sendQuery}>Run</button>
-          <ResultsContainer />
-        </div>
+    fetch(`http://localhost:8080/orpheus/graphql?query=` + cleanCode)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (myJson) {
+        console.log(myJson);
+      });
+  }
+  return (
+    <div>
+      <Header />
+      <div id="content">
+        <QueryContainer />
+        <button className="waves-effect waves-light btn-large" onClick={sendQuery}>Run</button>
+        <ResultsContainer />
       </div>
-    )
-  }
+    </div>
+  )
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
