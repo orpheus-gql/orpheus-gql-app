@@ -5,7 +5,7 @@ const ResultItemNum = props => {
   // console.log('here are props', props)
   if(props.headline !== 'Effective Runtime') {
   return (
-    <div className={`r${props.id}`}>
+    <div className={`r${props.id} result-item`}>
 
       <div className="result-header">
       <h5>{props.headline}</h5>
@@ -17,7 +17,7 @@ const ResultItemNum = props => {
   )
 } else {
   return (
-    <div className={`r${props.id}`}>
+    <div className={`r${props.id} result-item`}>
 
       <div className="result-header">
       <h5>{props.headline}</h5>
