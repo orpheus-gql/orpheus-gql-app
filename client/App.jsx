@@ -33,6 +33,7 @@ class App extends Component {
         <Header />
         <div id="content">
         <QueryContainer />
+        <button class="waves-effect waves-light btn-large run-button">Run</button>
         <ResultsContainer />
         </div>
       </div>
