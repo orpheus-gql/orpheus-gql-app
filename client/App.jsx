@@ -13,31 +13,44 @@ import QueryContainer from './containers/QueryContainer.jsx'
 import ResultsContainer from './containers/ResultsContainer.jsx'
 
 const mapStateToProps = (store) => ({
+  codeInput: store.app.codeInput,
 })
 
 const mapDispatchToProps = dispatch => ({
 })
 
-class App extends Component {
+const App = props => {
 
-  constructor(props) {
-    super(props);
+
+
+  const getCode = () => {
+    return props.codeInput;
   }
 
-  componentWillMount() {
-  }
+  const sendQuery = () => {
+    const code = getCode();
+    console.log(code);
+    const cleanCode = code.replace(/\s/g, "")
+    // const codeJSON = JSON.parse(code);
+    console.log(cleanCode);
 
-  render() {
-    return (
-      <div>
-        <Header />
-        <div id="content">
+    fetch(`http://localhost:8080/orpheus/graphql?query=` + cleanCode)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (myJson) {
+        console.log(myJson);
+      });
+  }
+  return (
+    <div>
+      <Header />
+      <div id="content">
         <QueryContainer />
-        <button class="waves-effect waves-light btn-large run-button">Run</button>
+        <button className="waves-effect waves-light btn-large" onClick={sendQuery}>Run</button>
         <ResultsContainer />
-        </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

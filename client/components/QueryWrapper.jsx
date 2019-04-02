@@ -8,6 +8,8 @@ import 'brace/theme/github';
 
 
 const QueryWrapper = props => {
+
+
   function onChange(newValue) {
     props.updateCodeInput(newValue);
   }
