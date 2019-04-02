@@ -21,8 +21,6 @@ const mapDispatchToProps = dispatch => ({
 
 const App = props => {
 
-
-
   const getCode = () => {
     return props.codeInput;
   }
