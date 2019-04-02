@@ -15,11 +15,17 @@ html {
   }
 }
 
+#content {
+  display: flex;
+  align-items: center;
+  flex-flow: wrap;
+}
+
 #results-wrapper {
   display: flex;
   justify-content: space-around;
   flex-flow: wrap;
-  width: 100%;
+  flex-grow: 1;
 }
 
 .result-header{
@@ -48,17 +54,20 @@ img {
   height: auto;
 }
 
-#content {
-  display: flex;
-  align-items: center;
+.ace-wrapper {
+  width: 300px;
+  // text-align: center;
 }
 
-.ace-editor {
-  display: flex;
-  align-items: center;
+#ace-editor {
+  width: 300px !important;
+  height: 500px !important;
+  margin: 0 !important;
+  display: inline-block;
 }
 
-button.waves-effect.waves-light.btn-large.run-button {
-  overflow: visible;
-  margin: 0px 0px 0px 20px;
+.button-wrapper {
+  text-align: 
+  width: 200px;
 }
+
