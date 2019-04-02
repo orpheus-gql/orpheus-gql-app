@@ -31,8 +31,10 @@ class App extends Component {
     return (
       <div>
         <Header />
+        <div id="content">
         <QueryContainer />
         <ResultsContainer />
+        </div>
       </div>
     )
   }

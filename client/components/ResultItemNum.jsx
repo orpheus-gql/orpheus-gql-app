@@ -2,15 +2,36 @@ import React from 'react';
 
 
 const ResultItemNum = props => {
+  // console.log('here are props', props)
+  if(props.headline !== 'Effective Runtime') {
   return (
-    <div id="result-item-num">
-      <h1>Results</h1>
-      <p id="result-item">DataBase Requests</p>
-      <p id="result-item">Data Points</p>
-      <p id="result-item">Nesting Depth</p>
-      <p id="result-item">Effective Runtime</p>
+    <div className={`r${props.id}`}>
+
+      <div className="result-header">
+      <h5>{props.headline}</h5>
+      </div>
+      <span className="result-value">
+      {props.value}</span>
+
     </div>
   )
+} else {
+  return (
+    <div className={`r${props.id}`}>
+
+      <div className="result-header">
+      <h5>{props.headline}</h5>
+      </div>
+      <span className="result-value">
+      {props.value}s</span>
+      
+      <div className="more-data">
+      <h6>Network Latency: {props.networkLatency}s</h6>
+      </div>
+      
+    </div>
+  )
+}
 };
 
 export default ResultItemNum;

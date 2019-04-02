@@ -2,11 +2,13 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   codeInput: '',
-  databaseRequestsValue: null,
-  dataPointsValue: null,
-  nestingDepthValue: null,
-  networkLatency: null,
-  effectiveRuntime: null
+  dataResults: {
+    'Database Requests': '04',
+    'Data Points': '33',
+    'Nesting Depth': '03',
+    'Effective Runtime': '2.1', 
+  },
+  networkLatency: '.02',
 }
 
 const appReducer = (state = initialState, action) => {

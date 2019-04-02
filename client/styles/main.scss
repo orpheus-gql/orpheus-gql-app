@@ -2,35 +2,73 @@ html {
   background: #e8e8e8;
 }
 
-#main h1{
+* {
+  outline: 1px solid red
+}
+
+#header{
   color: #444;
   text-align: center;
+  letter-spacing: .30em;
 }
 
-#query h1{
-  color: #444;
-  text-align: center;
+#results-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: wrap
 }
 
-#enter-query{
-  color: #444;
-  text-align: center;
+.result-header{
+  border: 8px solid rgb(150, 150, 150);
+  width: 100%
 }
 
-#query-field{
-  text-align: center;
+.result-value{
+  font-size: 45px
 }
 
-#result-item{
-  width: 175px;
-  border: 15px solid rgb(0, 41, 128);
-  padding: 25px;
-  margin: 25px;
+.r1{
+  width: 285.828px;
+  border: 2px solid rgb(70, 70, 72);
   text-align: center;
-  box-sizing: border-box
+  height: 256.609px;
+}
+
+.r2{
+  width: 285.828px;
+  border: 2px solid rgb(70, 70, 72);
+  text-align: center;
+  height: 256.609px;
+}
+.r3{
+  width: 285.828px;
+  border: 2px solid rgb(70, 70, 72);
+  text-align: center;
+  height: 256.609px;
+}
+
+.r4{
+  width: 285.828px;
+  border: 2px solid rgb(70, 70, 72);
+  text-align: center;
+  height: 256.609px;
+}
+
+.value{
+  font-size: large
 }
 
 img {
   width: 100%;
   height: auto;
+}
+
+#content {
+  display: flex;
+  align-items: center
+}
+
+.ace-editor {
+  display: flex;
+  align-items: center
 }
