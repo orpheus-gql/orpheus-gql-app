@@ -41,7 +41,7 @@ const QueryWrapper = props => {
         name="UNIQUE_ID_OF_DIV"
         editorProps={{ $blockScrolling: true }}
       />
-      <button class="waves-effect waves-light btn-large" onClick={sendQuery}>Run</button>
+      <button className="waves-effect waves-light btn-large" onClick={sendQuery}>Run</button>
     </div>
   )
 };
