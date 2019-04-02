@@ -8,6 +8,26 @@ import 'brace/theme/github';
 
 
 const QueryWrapper = props => {
+  const getCode = () => {
+    return props.codeInput;
+  }
+
+  const sendQuery = () => {
+    const code = getCode();
+    console.log(code);
+    const cleanCode = code.replace(/\s/g, "")
+    // const codeJSON = JSON.parse(code);
+    console.log(cleanCode);
+
+    fetch(`http://localhost:8080/orpheus/graphql?query=` + cleanCode)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (myJson) {
+        console.log(myJson);
+      });
+  }
+
   function onChange(newValue) {
     props.updateCodeInput(newValue);
   }
@@ -21,6 +41,7 @@ const QueryWrapper = props => {
         name="UNIQUE_ID_OF_DIV"
         editorProps={{ $blockScrolling: true }}
       />
+      <button onClick={sendQuery}>Click me</button>
     </div>
   )
 };
