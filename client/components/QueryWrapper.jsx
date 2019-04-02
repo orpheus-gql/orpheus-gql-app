@@ -12,7 +12,7 @@ const QueryWrapper = props => {
     props.updateCodeInput(newValue);
   }
   return (
-    <div>
+    <div className="ace-editor">
       <AceEditor
         mode="javascript"
         theme="github"
@@ -21,6 +21,7 @@ const QueryWrapper = props => {
         name="UNIQUE_ID_OF_DIV"
         editorProps={{ $blockScrolling: true }}
       />
+      <button class="waves-effect waves-light btn-large">Run</button>
     </div>
   )
 };
