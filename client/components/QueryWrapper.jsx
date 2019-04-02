@@ -8,29 +8,7 @@ import 'brace/theme/github';
 
 
 const QueryWrapper = props => {
-  const getCode = () => {
-    return props.codeInput;
-  }
 
-  const sendQuery = () => {
-    const code = getCode();
-    console.log(code);
-    const cleanCode = code.replace(/\s/g, "")
-    // const codeJSON = JSON.parse(code);
-    console.log(cleanCode);
-
-    fetch(`http://localhost:8080/orpheus/graphql?query=` + cleanCode)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (myJson) {
-        console.log(myJson);
-      });
-  }
-
-  function onChange(newValue) {
-    props.updateCodeInput(newValue);
-  }
   return (
     <div className="ace-editor">
       <AceEditor
@@ -41,7 +19,6 @@ const QueryWrapper = props => {
         name="UNIQUE_ID_OF_DIV"
         editorProps={{ $blockScrolling: true }}
       />
-      <button className="waves-effect waves-light btn-large" onClick={sendQuery}>Run</button>
     </div>
   )
 };
