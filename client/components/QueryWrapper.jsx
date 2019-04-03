@@ -14,14 +14,14 @@ const QueryWrapper = props => {
     props.updateCodeInput(newValue);
   }
   return (
-    <div className="ace-editor">
+    <div className="ace-wrapper">
       <AceEditor
         mode="javascript"
         theme="github"
         onChange={onChange}
         value={props.codeInput}
-        name="UNIQUE_ID_OF_DIV"
-        editorProps={{ $blockScrolling: true }}
+        name="ace-editor"
+      // editorProps={{ $blockScrolling: true }}
       />
     </div>
   )
