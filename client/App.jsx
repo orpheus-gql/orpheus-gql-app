@@ -11,7 +11,8 @@ import styles from './styles/main.scss';
 // import SecondContainer from './containers/SecondContainer.jsx';
 import Header from './components/Header.jsx';
 import QueryContainer from './containers/QueryContainer.jsx'
-import ResultsContainer from './containers/ResultsContainer.jsx'
+import ResultsContainer from './containers/ResultsContainer.jsx';
+import ResultItemVis from './components/ResultItemVis.jsx'
 
 const mapStateToProps = (store) => ({
   codeInput: store.app.codeInput,
@@ -65,12 +66,14 @@ const App = props => {
       <Header />
       <div id="content">
         <QueryContainer />
+
         <button className="waves-effect waves-light btn-large" onClick={async () => {
           await sendQuery();
           await getResults();
         }
         }>Run</button>
         <ResultsContainer />
+        <ResultItemVis />
       </div>
     </div>
   )
