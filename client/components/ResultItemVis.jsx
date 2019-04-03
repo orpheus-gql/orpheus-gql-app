@@ -12,10 +12,6 @@ const ResultItemVis = props => {
   // will change based on the number of resolvers we have
   const lineSeriesArray = [];
 
-
-
-
-
   function generateLineSeriesData(int) {
     // this should be an array of ARRAYS of objects
     // the number of 2nd level arrays we have is 
