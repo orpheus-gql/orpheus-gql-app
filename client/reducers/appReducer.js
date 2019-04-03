@@ -8,7 +8,7 @@ const initialState = {
     'Nesting Depth': null,
     'Effective Runtime': null, 
   },
-  networkLatency: '.02',
+  networkLatency: null,
 }
 
 const appReducer = (state = initialState, action) => {
@@ -33,13 +33,19 @@ const appReducer = (state = initialState, action) => {
     case types.SET_DATA_POINTS:
       return {
         ...state,
-        dataPointsValue: action.payload
+        dataResults: {
+          ...state.dataResults,
+          'Data Points': action.payload
+        }
       }
 
     case types.SET_NESTING_DEPTH:
       return {
         ...state,
-        nestingDepthValue: action.payload
+        dataResults: {
+          ...state.dataResults,
+          'Nesting Depth': action.payload
+        }
       }
 
     case types.SET_NETWORK_LATENCY:
