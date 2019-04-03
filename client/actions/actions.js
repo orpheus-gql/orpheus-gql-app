@@ -31,3 +31,13 @@ export const setEffectiveRuntime = (value) => ({
   type: types.SET_EFFECTIVE_RUNTIME,
   payload: value,
 });
+
+export const setResolverNum = (value) => ({
+  type: types.SET_RESOLVER_NUM,
+  payload: value,
+});
+
+export const setResolverNames = (value) => ({
+  type: types.SET_RESOLVER_NAMES,
+  payload: value,
+});
