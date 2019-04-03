@@ -3,10 +3,10 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   codeInput: '',
   dataResults: {
-    'Database Requests': '04',
-    'Data Points': '33',
-    'Nesting Depth': '03',
-    'Effective Runtime': '2.1', 
+    'Database Requests': null,
+    'Data Points': null,
+    'Nesting Depth': null,
+    'Effective Runtime': null, 
   },
   networkLatency: '.02',
 }
@@ -21,9 +21,13 @@ const appReducer = (state = initialState, action) => {
       }
 
     case types.SET_DATABASE_REQUESTS:
+      
       return {
         ...state,
-        databaseRequestsValue: action.payload
+        dataResults: {
+          ...state.dataResults,
+          'Database Requests': action.payload
+        }
       }
 
     case types.SET_DATA_POINTS:
@@ -47,7 +51,10 @@ const appReducer = (state = initialState, action) => {
     case types.SET_EFFECTIVE_RUNTIME:
       return {
         ...state,
-        effectiveRuntime: action.payload
+        dataResults: {
+          ...state.dataResults,
+          'Effective Runtime': action.payload
+        }
       }
 
     default:
