@@ -6,7 +6,11 @@ const initialState = {
     'Database Requests': null,
     'Data Points': null,
     'Nesting Depth': null,
-    'Effective Runtime': null, 
+    'Effective Runtime': null,
+  },
+  dataVis: {
+    resolverNum: null,
+    resolverNames: []
   },
   networkLatency: null,
 }
@@ -21,7 +25,7 @@ const appReducer = (state = initialState, action) => {
       }
 
     case types.SET_DATABASE_REQUESTS:
-      
+
       return {
         ...state,
         dataResults: {
@@ -60,6 +64,24 @@ const appReducer = (state = initialState, action) => {
         dataResults: {
           ...state.dataResults,
           'Effective Runtime': action.payload
+        }
+      }
+
+    case types.SET_RESOLVER_NUM:
+      return {
+        ...state,
+        dataVis: {
+          ...state.dataVis,
+          resolverNum: action.payload
+        }
+      }
+
+    case types.SET_RESOLVER_NAMES:
+      return {
+        ...state,
+        dataVis: {
+          ...state.dataVis,
+          resolverNames: action.payload
         }
       }
 

@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 
 // Import Children
 import ResultItemNum from '../components/ResultItemNum.jsx';
-import ResultItemVis from '../components/ResultItemVis.jsx';
 
 const mapStateToProps = (store) => ({
   codeInput: store.app.codeInput,
@@ -16,41 +15,41 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 const ResultsContainer = props => {
-  
+
   let resultsArr = [];
   let counter = 0;
-  
-  for(let key in props.dataResults) {
-    if(key != 'Effective Runtime') {
-    counter += 1
-    resultsArr.push(
-    <ResultItemNum 
-    key={key}
-    headline={key} 
-    value={props.dataResults[key]}
-    id={counter}
-    />)
+
+  for (let key in props.dataResults) {
+    if (key != 'Effective Runtime') {
+      counter += 1
+      resultsArr.push(
+        <ResultItemNum
+          key={key}
+          headline={key}
+          value={props.dataResults[key]}
+          id={counter}
+        />)
     } else {
-    counter += 1
-    resultsArr.push(
-    <ResultItemNum 
-    key={key}
-    headline={key} 
-    value={props.dataResults[key]}
-    id={counter}
-    networkLatency={props.networkLatency}
-    />)
+      counter += 1
+      resultsArr.push(
+        <ResultItemNum
+          key={key}
+          headline={key}
+          value={props.dataResults[key]}
+          id={counter}
+          networkLatency={props.networkLatency}
+        />)
     }
   }
-  
-      return (
-        <React.Fragment>
-        <div id="results-wrapper">
-         {resultsArr}
-        </div>
-        </React.Fragment>
-      )
-  }
+
+  return (
+    <React.Fragment>
+      <div id="results-wrapper">
+        {resultsArr}
+      </div>
+    </React.Fragment>
+  )
+}
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultsContainer);

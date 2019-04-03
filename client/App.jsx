@@ -20,6 +20,7 @@ let dpc = new dataPointsConstructor()
 
 const mapStateToProps = (store) => ({
   codeInput: store.app.codeInput,
+  dataVis: store.app.dataVis,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
@@ -31,9 +32,9 @@ const App = props => {
   }
 
   const sendQuery = () => new Promise((resolve, reject) => {
-    
+
     const code = getCode();
-  
+
     fetch(`http://localhost:8080/orpheus/graphql?query=` + code)
     .then(function (response) {
       if(response.status === 400) {
@@ -58,17 +59,17 @@ const App = props => {
         props.setDatabaseRequests(requestArr.length)
         // below sets effective runtime in results container
         let effectiveRunTime = 0;
-        requestArr.forEach( (element) => {
-          if(element.time) {
+        requestArr.forEach((element) => {
+          if (element.time) {
             effectiveRunTime += element.time
           }
         })
-        props.setEffectiveRuntime( ((effectiveRunTime % 60000) / 1000).toFixed(1))
+        props.setEffectiveRuntime(((effectiveRunTime % 60000) / 1000).toFixed(1))
         resolve();
       })
   });
-    
-  
+
+
 
   return (
     <div>
@@ -82,7 +83,7 @@ const App = props => {
         }
         }>Run</button>
         <ResultsContainer />
-        <ResultItemVis />
+        <ResultItemVis dataVis={props.dataVis} setResolverNum={props.setResolverNum} />
       </div>
     </div>
   )

@@ -6,52 +6,54 @@ import * as d3 from 'd3-shape';
 
 const ResultItemVis = props => {
   // get the number of resolvers we need to display
+  const resolverNum = props.dataVis.resolverNum;
 
-  // const resolverCount = Math.ceil(Math.random() * 3);
-  const resolverCount = 3
-  const colorArray = ["red", "green", "black"];
-  // create an array of LineSeries components
-  // based on the number of resolvers
-  const resolverLines = {
-    "0": [[{ x: 0, y: 50 }, { x: 100, y: 50 }]],
-    "1": [[{ x: 0, y: 50 }, { x: 15, y: 100 }, { x: 50, y: 100 }, { x: 100, y: 100 }], [{ x: 0, y: 50 }, { x: 50, y: 0 }, { x: 100, y: 0 }]],
-    "2": [[{ x: 0, y: 50 }, { x: 15, y: 100 }, { x: 50, y: 100 }, { x: 100, y: 100 }], [{ x: 0, y: 50 }, { x: 50, y: 50 }, { x: 100, y: 50 }], [{ x: 0, y: 50 }, { x: 15, y: 0 }, { x: 50, y: 0 }, { x: 100, y: 0 }]]
-  }
-
-  const bottomLine = [{ x: 0, y: 0 }]
-  const topLine = [{ x: 100, y: 100 }]
-  const base = [{ x: 0, y: 50 }, { x: 10, y: 50 }, { x: 19, y: 50 }, { x: 25, y: 50 }];
+  // and array of LineSeries components
+  // will change based on the number of resolvers we have
   const lineSeriesArray = [];
 
-  for (let i = 0; i < resolverCount; i += 1) {
-    const resolverLinesKey = (resolverCount - 1).toString();
-    console.log('resolverLinesKey is', resolverLinesKey);
-    lineSeriesArray.push(<LineSeries animation={'noWobble'}
-      data={resolverLines[resolverLinesKey][i]}
-      curve={"curveMonotoneX"}
-      color={'red'} />)
+  function generateLineSeriesData(int) {
+    // this should be an array of ARRAYS of objects
+    // the number of 2nd level arrays we have is 
+    // equal to the number of LineSeriesComponents we have
+    const output = [];
+    const distanceBetween = Math.floor(100 / (int + 1));
+
+    for (let i = 1; i <= int; i += 1) {
+      // each object should have equa-distant steps from 0 to 100 for the
+      const step = distanceBetween * i;
+      // each object should look like {x: valX, y: valY}
+      // each array inside the big array should start with:
+      const singleData = [{ x: 0, y: 50 }];
+      singleData.push({ x: 15, y: step }, { x: 50, y: step })
+      output.push(singleData);
+    }
+    return output;
   }
-  // lineSeriesArray.push(<LineSeries data={base} color="yellow" />);
 
+  const lineSeriesData = generateLineSeriesData(resolverNum);
 
-  // we can include grid lines or not
-  // this is for development demo purposes
-  // same with axises
+  for (let i = 0; i < resolverNum; i += 1) {
+    lineSeriesArray.push(<LineSeries animation={'noWobble'}
+      data={lineSeriesData[i]}
+      curve={"curveMonotoneX"}
+      color={'red'}
+      key={i * Date.now()} />)
+  }
+
   return (
     <div className="vis-wrapper">
       <FlexibleXYPlot className="party" >
 
         {lineSeriesArray}
-        <LineSeries data={topLine} />
-        <LineSeries data={bottomLine} />
-        {/* <Hint value={{ x: 0, y: 50 }} style={{ fontSize: 20, color: 'black' }} align={{ horizontal: 'auto', vertical: 'top' }}>
-          <div className="hinty">
-            <p style={{ fontFamily: 'sans-serif', marginLeft: '-50px' }}>{`{Resolver}`}</p>
-          </div>
-        </Hint> */}
+
 
       </FlexibleXYPlot>
-      {/* <p>This is the resolver</p> */}
+      <button className="waves-effect waves-light btn-large" onClick={() => {
+        const randomResolverNum = Math.ceil(Math.random() * 20);
+        props.setResolverNum(randomResolverNum)
+      }
+      }>Random Resolver Number is: {resolverNum}</button>
     </div>
 
   )
