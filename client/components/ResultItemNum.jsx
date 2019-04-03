@@ -16,21 +16,23 @@ const ResultItemNum = props => {
     </div>
   )
 } else {
-  return (
-    <div className={`r${props.id} result-item`}>
 
+    return (
+      <div className={`r${props.id} result-item`}>
+      
       <div className="result-header">
       <h5>{props.headline}</h5>
       </div>
       <span className="result-value">
-      {props.value}s</span>
+      {props.value} {props.value ? 's':''}</span>
       
       <div className="more-data">
-      <h6>Network Latency: {props.networkLatency}s</h6>
+      <h6>Network Latency: {props.networkLatency}{props.networkLatency ? 's': ''}</h6>
       </div>
       
-    </div>
-  )
+      </div>
+      )
+    
 }
 };
 

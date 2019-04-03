@@ -12,7 +12,11 @@ import styles from './styles/main.scss';
 import Header from './components/Header.jsx';
 import QueryContainer from './containers/QueryContainer.jsx'
 import ResultsContainer from './containers/ResultsContainer.jsx';
-import ResultItemVis from './components/ResultItemVis.jsx'
+import ResultItemVis from './components/ResultItemVis.jsx';
+
+import dataPointsConstructor from '../orpheus/orpheus/dataPoints';
+
+let dpc = new dataPointsConstructor()
 
 const mapStateToProps = (store) => ({
   codeInput: store.app.codeInput,
@@ -32,13 +36,18 @@ const App = props => {
     const code = getCode();
 
     fetch(`http://localhost:8080/orpheus/graphql?query=` + code)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (myJson) {
-        console.log('this is myJson', myJson);
-        resolve();
-      });
+    .then(function (response) {
+      if(response.status === 400) {
+        return window.alert('Please refactor your query')
+      }
+      return response.json();
+    })
+    .then(function (myJson) {
+      dpc.getInfo(myJson)
+      props.setDataPoints(dpc.dataPoints)
+      props.setNestingDepth(dpc.nestingDepth)
+      resolve();
+    });
   });
 
   const getResults = () => new Promise((resolve, reject) => {
