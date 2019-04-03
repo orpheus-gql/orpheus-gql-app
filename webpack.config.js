@@ -3,7 +3,7 @@ const CLIENT_DIR = path.resolve(__dirname, './client'); // created to seperate w
 
 module.exports = {
   mode: 'development',
-  entry: path.resolve('./client', 'index.js'),
+  entry: ['babel-polyfill', path.resolve('./client', 'index.js')],
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js'
@@ -37,6 +37,7 @@ module.exports = {
   devServer: {
     publicPath: '/build',
     contentBase: './',
+    port: 8080,
     proxy: {
       '/orpheus': {
         target: "http://localhost:3500",
