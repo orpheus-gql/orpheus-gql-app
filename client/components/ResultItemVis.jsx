@@ -18,7 +18,6 @@ const ResultItemVis = props => {
     // equal to the number of LineSeriesComponents we have
     const output = [];
     const distanceBetween = Math.floor(100 / (int + 1));
-    console.log('distanceBetween is', distanceBetween);
 
     for (let i = 1; i <= int; i += 1) {
       // each object should have equa-distant steps from 0 to 100 for the
@@ -33,7 +32,6 @@ const ResultItemVis = props => {
   }
 
   const lineSeriesData = generateLineSeriesData(resolverNum);
-  console.log(JSON.stringify(lineSeriesData));
 
   for (let i = 0; i < resolverNum; i += 1) {
     lineSeriesArray.push(<LineSeries animation={'noWobble'}
