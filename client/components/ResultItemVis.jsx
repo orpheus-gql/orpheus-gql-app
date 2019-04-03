@@ -8,10 +8,6 @@ const ResultItemVis = props => {
   // get the number of resolvers we need to display
   const resolverNum = props.dataVis.resolverNum;
 
-  const bottomLine = [{ x: 0, y: 0 }] // these are hidden to the user and stabilize our reactVis element
-  const topLine = [{ x: 100, y: 100 }]// these are hidden to the user and stabilize our reactVis element
-  // const base = [{ x: 0, y: 50 }, { x: 10, y: 50 }, { x: 19, y: 50 }, { x: 25, y: 50 }];
-
   // and array of LineSeries components
   // will change based on the number of resolvers we have
   const lineSeriesArray = [];
