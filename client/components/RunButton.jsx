@@ -43,17 +43,9 @@ const RunButton = props => {
         // figure out the number of resolvers
         const resolveNum = Object.keys(res.counts).length;
         props.setResolverNum(resolveNum);
-<<<<<<< HEAD
         const resolverNames = Object.keys(res.counts);
 
         props.setResolverNames(resolverNames);
-=======
-
-        const resolverNames = Object.keys(res.counts);
-
-        props.setResolverNames(resolverNames)
-
->>>>>>> f7c0ac5431fa4b4e50700e1988eb942946a3d699
         let average = (effectiveRunTime / requestArr.length)
         props.setEffectiveRuntime((average / 1000).toFixed(1))
         resolve();

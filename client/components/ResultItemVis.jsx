@@ -1,9 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
 import { LabelSeries, FlexibleXYPlot, XYPlot, LineSeries, MarkSeries, LineMarkSeries, HorizontalGridLines, VerticalGridLines, XAxis, YAxis } from 'react-vis';
-=======
-import { Hint, FlexibleXYPlot, XYPlot, LineSeries, MarkSeries, LineMarkSeries, HorizontalGridLines, VerticalGridLines, XAxis, YAxis, LabelSeries } from 'react-vis';
->>>>>>> f7c0ac5431fa4b4e50700e1988eb942946a3d699
 // import "./node_modules/react-vis/dist/style";
 import styles from './../styles/ResultItemVis.scss';
 import * as d3 from 'd3-shape';
@@ -12,18 +8,11 @@ const ResultItemVis = props => {
   // get the number of resolvers we need to display
   const resolverNum = props.dataVis.resolverNum;
   const resolverNames = props.dataVis.resolverNames;
-<<<<<<< HEAD
 
-  // and array of LineSeries components
+  // and argiray of LineSeries components
   // will change based on the number of resolvers we have
   const lineSeriesArray = [];
   // const labelSeriesArray = [];
-=======
-  // and array of LineSeries components
-  // will change based on the number of resolvers we have
-  const lineSeriesArray = [];
-  const labelSeriesArray = [];
->>>>>>> f7c0ac5431fa4b4e50700e1988eb942946a3d699
 
   function generateLineSeriesData(int) {
     // this should be an array of ARRAYS of objects
@@ -75,23 +64,12 @@ const ResultItemVis = props => {
     const distanceBetween = Math.floor(100 / (length + 1));
 
     for (let i = 0; i < length; i += 1) {
-      const step = distanceBetween * (i+1);
-      const singleData = { x: 50, y: step, label: arr[i], style: {fontSize: 20}, labelAnchorX: 'end' };
+      const step = distanceBetween * (i + 1);
+      const singleData = { x: 50, y: step, label: arr[i], style: { fontSize: 20 }, labelAnchorX: 'end' };
       output.push(singleData);
     }
     return output;
   }
-
-  const labelSeriesData = generateLabelSeriesData(resolverNames)
-
-  // for(let i = 0; i < labelSeriesData.length; i += 1){
-  //   labelSeriesArray.push(
-  //     <LabelSeries
-  //     animation
-  //     allowOffsetToBeReversed
-  //     data={labelSeriesData[i]} />
-  //   )
-  // }
 
   return (
     <div className="vis-wrapper">
@@ -101,7 +79,6 @@ const ResultItemVis = props => {
       <FlexibleXYPlot className="result-vis" >
 
         {lineSeriesArray}
-<<<<<<< HEAD
         <LineSeries
           data={[{ x: 0, y: 0 }]}
           color={'white'}
@@ -112,12 +89,6 @@ const ResultItemVis = props => {
         />
         <LabelSeries data={labelSeriesData}>
         </LabelSeries>
-=======
-
-        <LabelSeries data={labelSeriesData}>
-        </LabelSeries>
-
->>>>>>> f7c0ac5431fa4b4e50700e1988eb942946a3d699
       </FlexibleXYPlot>
       {/* <button className="waves-effect waves-light btn-large" onClick={() => {
         const randomResolverNum = Math.ceil(Math.random() * 20);

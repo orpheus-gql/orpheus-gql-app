@@ -29,12 +29,7 @@ const App = props => {
       <Header />
       <div id="content">
         <QueryContainer />
-<<<<<<< HEAD
         <ResultItemVis dataVis={props.dataVis} />
-=======
-        <ResultItemVis 
-        dataVis={props.dataVis} />
->>>>>>> f7c0ac5431fa4b4e50700e1988eb942946a3d699
         <ResultsContainer />
       </div>
     </React.Fragment>
