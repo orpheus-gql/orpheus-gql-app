@@ -8,17 +8,9 @@ const ResultItemVis = props => {
   // get the number of resolvers we need to display
   const resolverNum = props.dataVis.resolverNum;
 
-  const bottomLine = [{ x: 0, y: 0 }] // these are hidden to the user and stabilize our reactVis element
-  const topLine = [{ x: 100, y: 100 }]// these are hidden to the user and stabilize our reactVis element
-  // const base = [{ x: 0, y: 50 }, { x: 10, y: 50 }, { x: 19, y: 50 }, { x: 25, y: 50 }];
-
   // and array of LineSeries components
   // will change based on the number of resolvers we have
   const lineSeriesArray = [];
-
-
-
-
 
   function generateLineSeriesData(int) {
     // this should be an array of ARRAYS of objects
@@ -26,7 +18,6 @@ const ResultItemVis = props => {
     // equal to the number of LineSeriesComponents we have
     const output = [];
     const distanceBetween = Math.floor(100 / (int + 1));
-    console.log('distanceBetween is', distanceBetween);
 
     for (let i = 1; i <= int; i += 1) {
       // each object should have equa-distant steps from 0 to 100 for the
@@ -41,7 +32,6 @@ const ResultItemVis = props => {
   }
 
   const lineSeriesData = generateLineSeriesData(resolverNum);
-  console.log(JSON.stringify(lineSeriesData));
 
   for (let i = 0; i < resolverNum; i += 1) {
     lineSeriesArray.push(<LineSeries animation={'noWobble'}

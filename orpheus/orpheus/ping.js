@@ -18,7 +18,9 @@ NetworkConstructor.prototype.ping = function() {
       that.history = that.history.slice(1)
     }
     that.history.push(elapsedTime); 
+    that.average = Math.floor((that.average * (that.history.length-1) + elapsedTime)/that.history.length)
   });
 }
+
 
 module.exports = NetworkConstructor;
