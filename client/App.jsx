@@ -4,11 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // import styles
-import styles from './styles/main.scss';
+import styles from './styles/App.scss';
 
-// import main container
-// import MainContainer from './containers/MainContainer.jsx';
-// import SecondContainer from './containers/SecondContainer.jsx';
 import Header from './components/Header.jsx';
 import QueryContainer from './containers/QueryContainer.jsx'
 import ResultsContainer from './containers/ResultsContainer.jsx';
@@ -27,83 +24,15 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 const App = props => {
-
-  const getCode = () => {
-    return props.codeInput;
-  }
-
-  const sendQuery = () => new Promise((resolve, reject) => {
-
-    const code = getCode();
-
-    fetch(`http://localhost:8080/orpheus/graphql?query=` + code)
-    .then(function (response) {
-      if(response.status === 400) {
-        return window.alert('Please refactor your query')
-      }
-      return response.json();
-    })
-    .then(function (myJson) {
-      dpc.getInfo(myJson)
-      props.setDataPoints(dpc.dataPoints)
-      props.setNestingDepth(dpc.nestingDepth)
-      resolve();
-    });
-  });
-
-  const getResults = () => new Promise((resolve, reject) => {
-    fetch(`http://localhost:3500/requests`)
-      .then(res => res.json())
-      .then(res => {
-        // below sets db requests in results container
-        let requestArr = res.requests;
-        props.setDatabaseRequests(requestArr.length)
-        // below sets effective runtime in results container
-        let effectiveRunTime = 0;
-        requestArr.forEach((element) => {
-          if (element.time) {
-            effectiveRunTime += element.time
-          }
-        });
-        let average = (effectiveRunTime / requestArr.length)
-        props.setEffectiveRuntime(( average / 1000).toFixed(1))
-        resolve();
-      })
-  });
-
-  const getNetworkLatency = () => new Promise((resolve, reject) => {
-     fetch(`http://localhost:3500/netStats`)
-      .then(res => res.json())
-      .then(res => {
-        let netStatsArr = res.history;
-        let networkLatency = netStatsArr[netStatsArr.length-1];
-        props.setNetworkLatency( (networkLatency / 1000).toFixed(2))
-        console.log((networkLatency /1000).toFixed(2))
-        // resolve();
-      })
-  });
-
-
-
   return (
-    <div>
+    <React.Fragment>
       <Header />
       <div id="content">
         <QueryContainer />
-        
-        <button className="waves-effect waves-light btn-large" onClick={async () => {
-          await sendQuery();
-          await getResults();
-          await setInterval(getNetworkLatency, 500);
-        }
-        }>Run</button>
-
-        <ResultsContainer />
-
         <ResultItemVis dataVis={props.dataVis} setResolverNum={props.setResolverNum} />
-
+        <ResultsContainer />
       </div>
-    </div>
+    </React.Fragment>
   )
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

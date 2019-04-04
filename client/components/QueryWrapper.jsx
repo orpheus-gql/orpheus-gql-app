@@ -1,10 +1,13 @@
 import React from 'react';
 import brace from 'brace';
 import AceEditor from 'react-ace';
-
+import 'brace/mode/json';
 import 'brace/mode/javascript';
-import 'brace/theme/github';
+import 'brace/theme/gruvbox';
 
+import styles from './../styles/QueryWrapper.scss';
+
+import RunButton from './RunButton.jsx'
 
 
 const QueryWrapper = props => {
@@ -16,13 +19,24 @@ const QueryWrapper = props => {
   return (
     <div className="ace-wrapper">
       <AceEditor
-        mode="javascript"
-        theme="github"
+        mode="json"
+        theme="gruvbox"
         onChange={onChange}
         value={props.codeInput}
         name="ace-editor"
-      // editorProps={{ $blockScrolling: true }}
+        fontSize={18}
+        showPrintMargin={false}
+        showGutter={false}
+        setOptions={{
+          showLineNumbers: false,
+          tabSize: 2,
+        }}
       />
+      <RunButton setDataPoints={props.setDataPoints}
+        setNestingDepth={props.setNestingDepth}
+        setNetworkLatency={props.setNetworkLatency}
+        setEffectiveRuntime={props.setEffectiveRuntime} setDatabaseRequests={props.setDatabaseRequests} codeInput={props.codeInput}
+        setDatabaseRequests={props.setDatabaseRequests} />
     </div>
   )
 };

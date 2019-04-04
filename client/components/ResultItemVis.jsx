@@ -37,23 +37,26 @@ const ResultItemVis = props => {
     lineSeriesArray.push(<LineSeries animation={'noWobble'}
       data={lineSeriesData[i]}
       curve={"curveMonotoneX"}
-      color={'red'}
+      color={'black'}
       key={i * Date.now()} />)
   }
 
   return (
     <div className="vis-wrapper">
+      <div className="result-header">
+        <h5>Resolvers</h5>
+      </div>
       <FlexibleXYPlot className="party" >
 
         {lineSeriesArray}
 
 
       </FlexibleXYPlot>
-      <button className="waves-effect waves-light btn-large" onClick={() => {
+      {/* <button className="waves-effect waves-light btn-large" onClick={() => {
         const randomResolverNum = Math.ceil(Math.random() * 20);
         props.setResolverNum(randomResolverNum)
       }
-      }>Random Resolver Number is: {resolverNum}</button>
+      }>Random Resolver Number is: {resolverNum}</button> */}
     </div>
 
   )

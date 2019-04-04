@@ -3,6 +3,8 @@ import * as actions from "../actions/actions";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import styles from './../styles/ResultsContainer.scss'
+
 // Import Children
 import ResultItemNum from '../components/ResultItemNum.jsx';
 
