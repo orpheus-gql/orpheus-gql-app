@@ -34,6 +34,10 @@ app.get('/reset', (req, res) => {
   res.json(reqTracker);
 })
 
+app.get('/netStats', (req, res)=>{
+  res.json(netStats)
+})
+
 let resolverCounter = schema.resolverCounter;
 
 let netStats = new NetworkConstructor()
@@ -41,7 +45,6 @@ let netStats = new NetworkConstructor()
 setInterval(function () { 
   netStats.ping();
   console.log(netStats.history);
-  console.log('this is the resolver counter', resolverCounter) 
 }, 3000);
 
 app.listen(3500, () => {
