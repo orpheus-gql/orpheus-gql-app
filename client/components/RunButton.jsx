@@ -16,6 +16,7 @@ const RunButton = props => {
         return response.json();
       })
       .then(function (myJson) {
+        dpc = new dataPointsConstructor();
         dpc.getInfo(myJson)
         props.setDataPoints(dpc.dataPoints)
         props.setNestingDepth(dpc.nestingDepth)
@@ -40,7 +41,16 @@ const RunButton = props => {
         // figure out the number of resolvers
         const resolveNum = Object.keys(res.counts).length;
         props.setResolverNum(resolveNum);
+<<<<<<< HEAD
         let average = (effectiveRunTime / requestArr.length);
+=======
+
+        const resolverNames = Object.keys(res.counts);
+
+        props.setResolverNames(resolverNames)
+
+        let average = (effectiveRunTime / requestArr.length)
+>>>>>>> feeb7b7d6f62507617e2ace106d42df9036a813f
         props.setEffectiveRuntime((average / 1000).toFixed(1))
         resolve();
       })

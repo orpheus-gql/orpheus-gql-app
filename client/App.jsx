@@ -24,7 +24,8 @@ const App = props => {
       <Header />
       <div id="content">
         <QueryContainer />
-        <ResultItemVis dataVis={props.dataVis} setResolverNum={props.setResolverNum} />
+        <ResultItemVis 
+        dataVis={props.dataVis} />
         <ResultsContainer />
       </div>
     </React.Fragment>

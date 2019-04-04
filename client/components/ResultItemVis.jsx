@@ -1,5 +1,5 @@
 import React from 'react';
-import { Hint, FlexibleXYPlot, XYPlot, LineSeries, MarkSeries, LineMarkSeries, HorizontalGridLines, VerticalGridLines, XAxis, YAxis } from 'react-vis';
+import { Hint, FlexibleXYPlot, XYPlot, LineSeries, MarkSeries, LineMarkSeries, HorizontalGridLines, VerticalGridLines, XAxis, YAxis, LabelSeries } from 'react-vis';
 // import "./node_modules/react-vis/dist/style";
 import styles from './../styles/ResultItemVis.scss';
 import * as d3 from 'd3-shape';
@@ -7,10 +7,11 @@ import * as d3 from 'd3-shape';
 const ResultItemVis = props => {
   // get the number of resolvers we need to display
   const resolverNum = props.dataVis.resolverNum;
-
+  const resolverNames = props.dataVis.resolverNames;
   // and array of LineSeries components
   // will change based on the number of resolvers we have
   const lineSeriesArray = [];
+  const labelSeriesArray = [];
 
   function generateLineSeriesData(int) {
     // this should be an array of ARRAYS of objects
@@ -41,6 +42,30 @@ const ResultItemVis = props => {
       key={i * Date.now()} />)
   }
 
+  function generateLabelSeriesData(arr) {
+    const output = [];
+    let length = arr.length
+    const distanceBetween = Math.floor(100 / (length + 1));
+
+    for (let i = 0; i < length; i += 1) {
+      const step = distanceBetween * (i+1);
+      const singleData = { x: 50, y: step, label: arr[i], style: {fontSize: 20}, labelAnchorX: 'end' };
+      output.push(singleData);
+    }
+    return output;
+  }
+
+  const labelSeriesData = generateLabelSeriesData(resolverNames)
+
+  // for(let i = 0; i < labelSeriesData.length; i += 1){
+  //   labelSeriesArray.push(
+  //     <LabelSeries
+  //     animation
+  //     allowOffsetToBeReversed
+  //     data={labelSeriesData[i]} />
+  //   )
+  // }
+
   return (
     <div className="vis-wrapper">
       <div className="result-header">
@@ -50,6 +75,12 @@ const ResultItemVis = props => {
 
         {lineSeriesArray}
 
+<<<<<<< HEAD
+=======
+        <LabelSeries data={labelSeriesData}>
+        </LabelSeries>
+
+>>>>>>> feeb7b7d6f62507617e2ace106d42df9036a813f
       </FlexibleXYPlot>
       {/* <button className="waves-effect waves-light btn-large" onClick={() => {
         const randomResolverNum = Math.ceil(Math.random() * 20);
