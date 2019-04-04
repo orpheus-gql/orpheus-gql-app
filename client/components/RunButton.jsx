@@ -29,7 +29,6 @@ const RunButton = props => {
     fetch(`http://localhost:3500/requests`)
       .then(res => res.json())
       .then(res => {
-        console.log('res inside getResults is', res);
         // below sets db requests in results container
         let requestArr = res.requests;
         props.setDatabaseRequests(requestArr.length)
@@ -42,7 +41,6 @@ const RunButton = props => {
         });
         // figure out the number of resolvers
         const resolveNum = Object.keys(res.counts).length;
-        console.log('resolveNum is', resolveNum);
         props.setResolverNum(resolveNum);
         let average = (effectiveRunTime / requestArr.length)
         props.setEffectiveRuntime((average / 1000).toFixed(1))
