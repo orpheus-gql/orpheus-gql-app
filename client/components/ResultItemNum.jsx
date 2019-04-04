@@ -26,7 +26,7 @@ const ResultItemNum = props => {
         <div className="result-value">
           {props.value} {props.value ? 's' : ''}</div>
 
-        <div className="more-data">
+        <div style={{ 'display': 'none' }} className="more-data">
           <h6>Network Latency: {props.networkLatency}{props.networkLatency ? 's' : ''}</h6>
         </div>
 

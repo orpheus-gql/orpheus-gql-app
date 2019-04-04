@@ -6,7 +6,7 @@ const initialState = {
     'Database Requests': null,
     'Data Points': null,
     'Nesting Depth': null,
-    'Effective Runtime': null,
+    'Runtime': null,
   },
   dataVis: {
     resolverNum: null,

@@ -46,11 +46,17 @@ const ResultItemVis = props => {
       <div className="result-header">
         <h5>Resolvers</h5>
       </div>
-      <FlexibleXYPlot className="party" >
+      <FlexibleXYPlot className="result-vis" >
 
         {lineSeriesArray}
-
-
+        <LineSeries
+          data={[{ x: 0, y: 0 }]}
+          color={'white'}
+        />
+        <LineSeries
+          data={[{ x: 50, y: 100 }]}
+          color={'white'}
+        />
       </FlexibleXYPlot>
       {/* <button className="waves-effect waves-light btn-large" onClick={() => {
         const randomResolverNum = Math.ceil(Math.random() * 20);
