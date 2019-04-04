@@ -1,5 +1,5 @@
 const { Pool } = require('pg');
-var ping = require('ping');
+// var ping = require('ping');
 
 const pool = new Pool({
   connectionString: process.env.DB_HOST,
