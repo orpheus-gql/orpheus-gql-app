@@ -23,8 +23,8 @@ const ResultItemNum = props => {
         <div className="result-header">
           <h5>{props.headline}</h5>
         </div>
-        <span className="result-value">
-          {props.value} {props.value ? 's' : ''}</span>
+        <div className="result-value">
+          {props.value} {props.value ? 's' : ''}</div>
 
         <div className="more-data">
           <h6>Network Latency: {props.networkLatency}{props.networkLatency ? 's' : ''}</h6>
