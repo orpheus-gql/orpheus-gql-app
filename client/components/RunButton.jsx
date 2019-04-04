@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import dataPointsConstructor from './../../orpheus/orpheus/dataPoints';
 let dpc = new dataPointsConstructor();
 
-
 import styles from './../styles/RunButton.scss';
-
 
 const RunButton = props => {
 
@@ -42,7 +40,7 @@ const RunButton = props => {
         // figure out the number of resolvers
         const resolveNum = Object.keys(res.counts).length;
         props.setResolverNum(resolveNum);
-        let average = (effectiveRunTime / requestArr.length)
+        let average = (effectiveRunTime / requestArr.length);
         props.setEffectiveRuntime((average / 1000).toFixed(1))
         resolve();
       })

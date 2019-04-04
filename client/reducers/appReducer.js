@@ -10,7 +10,7 @@ const initialState = {
   },
   dataVis: {
     resolverNum: null,
-    resolverNames: []
+    resolverNames: [],
   },
   networkLatency: null,
 }
@@ -25,7 +25,6 @@ const appReducer = (state = initialState, action) => {
       }
 
     case types.SET_DATABASE_REQUESTS:
-
       return {
         ...state,
         dataResults: {

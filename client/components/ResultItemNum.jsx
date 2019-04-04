@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './../styles/ResultItemNum.scss'
 
-
 const ResultItemNum = props => {
   // console.log('here are props', props)
   if (props.headline !== 'Effective Runtime') {

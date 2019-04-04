@@ -3,13 +3,12 @@ import * as actions from "../actions/actions";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-
 // Import Children
 import QueryWrapper from '../components/QueryWrapper.jsx';
 
 const mapStateToProps = (store) => ({
   codeInput: store.app.codeInput,
-})
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 

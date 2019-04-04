@@ -53,5 +53,4 @@ const ResultsContainer = props => {
   )
 }
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(ResultsContainer);

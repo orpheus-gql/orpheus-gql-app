@@ -9,9 +9,7 @@ import styles from './../styles/QueryWrapper.scss';
 
 import RunButton from './RunButton.jsx'
 
-
 const QueryWrapper = props => {
-
 
   function onChange(newValue) {
     props.updateCodeInput(newValue);
