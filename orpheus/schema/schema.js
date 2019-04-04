@@ -2,7 +2,7 @@ const graphql = require('graphql');
 const _ = require('lodash');
 const Book = require('../model/book')
 const Author = require('../model/author')
-const reqTracker = require ('../orpheus/trackResolver');
+const reqTracker = require('../orpheus/trackResolver');
 
 const resolverCounter = {};
 
@@ -11,14 +11,14 @@ const resolverCounter = {};
 // describe the object types in the schema; schema here defines the graph and the object types on the graph
 
 // desctructure Graph QL Object Type - grab this function from the graphql package, so we can store and use it inside this file
-const { 
-  GraphQLObjectType, 
-  GraphQLString, 
-  GraphQLSchema, 
-  GraphQLID, 
-  GraphQLInt, 
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLSchema,
+  GraphQLID,
+  GraphQLInt,
   GraphQLList,
-  GraphQLNonNull 
+  GraphQLNonNull
 } = graphql;
 
 // dummy data
@@ -37,38 +37,39 @@ const {
 //   {name: 'Terry Pratchett', age: 66, id: '3'}
 // ];
 
-const BookType = new GraphQLObjectType( {
+const BookType = new GraphQLObjectType({
   name: 'Book',
   fields: () => ({
     // fields property will actually be a function; needs to be a function because later on when we have multiple types and they have references to one another, then one type might not know what another type is unless we wrap those fields in a function
-    id: {type: GraphQLID},
-    name: {type: GraphQLString},
-    genre: {type: GraphQLString},
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    genre: { type: GraphQLString },
     author: {
       type: AuthorType,
       resolve(parent, args) {
-        reqTracker.addEntry('author');
+        reqTracker.addEntry('Author');
         // console.log(parent) // books array
         // return _.find(authors, {id: parent.authorId});
-        return Author.findOne({_id: parent.authorId}); // this will look in author collection and look for Id we pass in / genre, author, all books
+        return Author.findOne({ _id: parent.authorId }); // this will look in author collection and look for Id we pass in / genre, author, all books
       }
     }
   })
 });
 
-const AuthorType = new GraphQLObjectType( {
+const AuthorType = new GraphQLObjectType({
   name: 'Author',
   fields: () => ({
-    id: {type: GraphQLID},
-    name: {type: GraphQLString},
-    age: {type: GraphQLInt},
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    age: { type: GraphQLInt },
     books: {
       type: new GraphQLList(BookType),
       resolve(parent, args) {
-        reqTracker.addEntry('book');
+        reqTracker.addEntry('Book');
         // return _.filter(books, {authorId: parent.id});
-        return Book.find({authorId: parent.id}); // look all records in book collection based on criteria in object
-    }}
+        return Book.find({ authorId: parent.id }); // look all records in book collection based on criteria in object
+      }
+    }
   })
 });
 
@@ -79,7 +80,7 @@ const RootQuery = new GraphQLObjectType({
     // don't need to wrap in a function because we don't need to worry about the order
     book: {
       type: BookType,
-      args: {id: {type: GraphQLID}},
+      args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         // write code to get data from db / other source; resolve functions gets fired when query comes in
         console.log('resolving book inside of root');
@@ -91,7 +92,7 @@ const RootQuery = new GraphQLObjectType({
     },
     author: {
       type: AuthorType,
-      args: {id: {type: GraphQLID}},
+      args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         console.log('resolving author inside of root');
         reqTracker.addEntry('rootAuthor');
@@ -128,10 +129,10 @@ const Mutation = new GraphQLObjectType({
     addAuthor: {
       type: AuthorType,
       args: {
-        name: {type: new GraphQLNonNull(GraphQLString)},
-        age: {type: new GraphQLNonNull(GraphQLInt)}
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        age: { type: new GraphQLNonNull(GraphQLInt) }
       },
-      resolve(parent, args){
+      resolve(parent, args) {
         let author = new Author({
           name: args.name,
           age: args.age
@@ -142,11 +143,11 @@ const Mutation = new GraphQLObjectType({
     addBook: {
       type: BookType,
       args: {
-        name: {type: new GraphQLNonNull(GraphQLString)},
-        genre: {type: new GraphQLNonNull(GraphQLString)},
-        authorId: {type: new GraphQLNonNull(GraphQLID)}
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        genre: { type: new GraphQLNonNull(GraphQLString) },
+        authorId: { type: new GraphQLNonNull(GraphQLID) }
       },
-      resolve(parent, args){
+      resolve(parent, args) {
         let book = new Book({
           name: args.name,
           genre: args.genre,
