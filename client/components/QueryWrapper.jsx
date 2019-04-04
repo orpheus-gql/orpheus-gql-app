@@ -32,7 +32,11 @@ const QueryWrapper = props => {
           tabSize: 2,
         }}
       />
-      <RunButton setEffectiveRuntime={props.setEffectiveRuntime} setDatabaseRequests={props.setDatabaseRequests} codeInput={props.codeInput} />
+      <RunButton setDataPoints={props.setDataPoints}
+        setNestingDepth={props.setNestingDepth}
+        setNetworkLatency={props.setNetworkLatency}
+        setEffectiveRuntime={props.setEffectiveRuntime} setDatabaseRequests={props.setDatabaseRequests} codeInput={props.codeInput}
+        setDatabaseRequests={props.setDatabaseRequests} />
     </div>
   )
 };

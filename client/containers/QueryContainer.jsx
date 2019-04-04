@@ -19,7 +19,10 @@ const QueryContainer = props => (
       codeInput={props.codeInput}
       updateCodeInput={props.updateCodeInput}
       setDatabaseRequests={props.setDatabaseRequests}
-      setEffectiveRuntime={props.setEffectiveRuntime} />
+      setEffectiveRuntime={props.setEffectiveRuntime}
+      setDataPoints={props.setDataPoints}
+      setNestingDepth={props.setNestingDepth}
+      setNetworkLatency={props.setNetworkLatency} />
   </React.Fragment>
 );
 

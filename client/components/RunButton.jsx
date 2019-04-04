@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import dataPointsConstructor from './../../orpheus/orpheus/dataPoints';
 
+let dpc = new dataPointsConstructor()
 
 import styles from './../styles/RunButton.scss';
 
@@ -10,10 +12,15 @@ const RunButton = props => {
     const code = props.codeInput;
     fetch(`http://localhost:8080/orpheus/graphql?query=` + code)
       .then(function (response) {
+        if (response.status === 400) {
+          return window.alert('Please refactor your query')
+        }
         return response.json();
       })
       .then(function (myJson) {
-        console.log('this is myJson', myJson);
+        dpc.getInfo(myJson)
+        props.setDataPoints(dpc.dataPoints)
+        props.setNestingDepth(dpc.nestingDepth)
         resolve();
       });
   });
@@ -31,9 +38,22 @@ const RunButton = props => {
           if (element.time) {
             effectiveRunTime += element.time
           }
-        })
-        props.setEffectiveRuntime(((effectiveRunTime % 60000) / 1000).toFixed(1))
+        });
+        let average = (effectiveRunTime / requestArr.length)
+        props.setEffectiveRuntime((average / 1000).toFixed(1))
         resolve();
+      })
+  });
+
+  const getNetworkLatency = () => new Promise((resolve, reject) => {
+    fetch(`http://localhost:3500/netStats`)
+      .then(res => res.json())
+      .then(res => {
+        let netStatsArr = res.history;
+        let networkLatency = netStatsArr[netStatsArr.length - 1];
+        props.setNetworkLatency((networkLatency / 1000).toFixed(2))
+        console.log((networkLatency / 1000).toFixed(2))
+        // resolve();
       })
   });
 
@@ -42,6 +62,7 @@ const RunButton = props => {
       <button className="run" onClick={async () => {
         await sendQuery();
         await getResults();
+        await setInterval(getNetworkLatency, 500);
       }
       }>Run</button>
     </React.Fragment>
