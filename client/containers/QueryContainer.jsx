@@ -22,7 +22,9 @@ const QueryContainer = props => (
       setEffectiveRuntime={props.setEffectiveRuntime}
       setDataPoints={props.setDataPoints}
       setNestingDepth={props.setNestingDepth}
-      setNetworkLatency={props.setNetworkLatency} />
+      setNetworkLatency={props.setNetworkLatency}
+      setResolverNum={props.setResolverNum}
+      setResolverNames={props.setResolverNames} />
   </React.Fragment>
 );
 

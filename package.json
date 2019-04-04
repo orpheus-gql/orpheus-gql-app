@@ -7,7 +7,8 @@
     "start": "electron -r babel-register .",
     "build": "webpack",
     "dev": "webpack-dev-server",
-    "test": "jest"
+    "test": "jest",
+    "or": "node orpheus/app.js"
   },
   "repository": {
     "type": "git",
