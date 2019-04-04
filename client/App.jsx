@@ -18,6 +18,7 @@ import dataPointsConstructor from '../orpheus/orpheus/dataPoints';
 
 let dpc = new dataPointsConstructor()
 
+
 const mapStateToProps = (store) => ({
   codeInput: store.app.codeInput,
   dataVis: store.app.dataVis,
@@ -63,9 +64,22 @@ const App = props => {
           if (element.time) {
             effectiveRunTime += element.time
           }
-        })
-        props.setEffectiveRuntime(((effectiveRunTime % 60000) / 1000).toFixed(1))
+        });
+        let average = (effectiveRunTime / requestArr.length)
+        props.setEffectiveRuntime(( average / 1000).toFixed(1))
         resolve();
+      })
+  });
+
+  const getNetworkLatency = () => new Promise((resolve, reject) => {
+     fetch(`http://localhost:3500/netStats`)
+      .then(res => res.json())
+      .then(res => {
+        let netStatsArr = res.history;
+        let networkLatency = netStatsArr[netStatsArr.length-1];
+        props.setNetworkLatency( (networkLatency / 1000).toFixed(2))
+        console.log((networkLatency /1000).toFixed(2))
+        // resolve();
       })
   });
 
@@ -76,14 +90,18 @@ const App = props => {
       <Header />
       <div id="content">
         <QueryContainer />
-
+        
         <button className="waves-effect waves-light btn-large" onClick={async () => {
           await sendQuery();
           await getResults();
+          await setInterval(getNetworkLatency, 500);
         }
         }>Run</button>
+
         <ResultsContainer />
+
         <ResultItemVis dataVis={props.dataVis} setResolverNum={props.setResolverNum} />
+
       </div>
     </div>
   )

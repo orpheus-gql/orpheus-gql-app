@@ -4,8 +4,6 @@ function dataPointsConstructor() {
 }
 
 dataPointsConstructor.prototype.getInfo = function(data, h = 0) {
-
-
     if(h > this.nestingDepth) this.nestingDepth = h
     let keys = Object.keys(data)
     keys.forEach((element) => {
@@ -15,8 +13,6 @@ dataPointsConstructor.prototype.getInfo = function(data, h = 0) {
         this.dataPoints++
       }
     })
-  
- 
 }
 
 module.exports = dataPointsConstructor;
