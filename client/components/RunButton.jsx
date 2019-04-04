@@ -18,6 +18,7 @@ const RunButton = props => {
         return response.json();
       })
       .then(function (myJson) {
+        dpc = new dataPointsConstructor();
         dpc.getInfo(myJson)
         props.setDataPoints(dpc.dataPoints)
         props.setNestingDepth(dpc.nestingDepth)
