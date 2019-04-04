@@ -17,7 +17,9 @@ const QueryContainer = props => (
   <React.Fragment>
     <QueryWrapper
       codeInput={props.codeInput}
-      updateCodeInput={props.updateCodeInput} />
+      updateCodeInput={props.updateCodeInput}
+      setDatabaseRequests={props.setDatabaseRequests}
+      setEffectiveRuntime={props.setEffectiveRuntime} />
   </React.Fragment>
 );
 
