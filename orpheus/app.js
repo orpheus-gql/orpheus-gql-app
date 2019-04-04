@@ -3,10 +3,10 @@ const graphqlHTTP = require('express-graphql');
 const schema = require('./schema/schema');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const NetworkConstructor = require('./orpheus/ping')
-const reqTracker = require('./orpheus/trackResolver')
+const NetworkConstructor = require('./orpheus/ping');
+const reqTracker = require('./orpheus/trackResolver');
+const dataPoints = require('./orpheus/dataPoints');
 require('dotenv').config();
-
 const app = express();
 
 // allow cross-origin requests
