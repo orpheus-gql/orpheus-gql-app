@@ -1,5 +1,5 @@
 import React from 'react';
-import { Hint, FlexibleXYPlot, XYPlot, LineSeries, MarkSeries, LineMarkSeries, HorizontalGridLines, VerticalGridLines, XAxis, YAxis } from 'react-vis';
+import { LabelSeries, FlexibleXYPlot, XYPlot, LineSeries, MarkSeries, LineMarkSeries, HorizontalGridLines, VerticalGridLines, XAxis, YAxis } from 'react-vis';
 // import "./node_modules/react-vis/dist/style";
 import styles from './../styles/ResultItemVis.scss';
 import * as d3 from 'd3-shape';
@@ -7,10 +7,12 @@ import * as d3 from 'd3-shape';
 const ResultItemVis = props => {
   // get the number of resolvers we need to display
   const resolverNum = props.dataVis.resolverNum;
+  const resolverNames = props.dataVis.resolverNames;
 
   // and array of LineSeries components
   // will change based on the number of resolvers we have
   const lineSeriesArray = [];
+  // const labelSeriesArray = [];
 
   function generateLineSeriesData(int) {
     // this should be an array of ARRAYS of objects
@@ -31,7 +33,22 @@ const ResultItemVis = props => {
     return output;
   }
 
+
+
+  function generateLabelSeriesData(arr) {
+    const output = [];
+    let length = arr.length
+    const distanceBetween = Math.floor(100 / (length + 1));
+
+    for (let i = 0; i < length; i += 1) {
+      const step = distanceBetween * (i + 1);
+      const singleData = { x: 50, y: step, label: arr[i], style: { fontSize: 20 }, labelAnchorX: 'end' };
+      output.push(singleData);
+    }
+    return output;
+  }
   const lineSeriesData = generateLineSeriesData(resolverNum);
+  const labelSeriesData = generateLabelSeriesData(resolverNames)
 
   for (let i = 0; i < resolverNum; i += 1) {
     lineSeriesArray.push(<LineSeries animation={'noWobble'}
@@ -57,6 +74,8 @@ const ResultItemVis = props => {
           data={[{ x: 50, y: 100 }]}
           color={'white'}
         />
+        <LabelSeries data={labelSeriesData}>
+        </LabelSeries>
       </FlexibleXYPlot>
       {/* <button className="waves-effect waves-light btn-large" onClick={() => {
         const randomResolverNum = Math.ceil(Math.random() * 20);

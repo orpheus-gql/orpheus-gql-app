@@ -63,7 +63,7 @@ const appReducer = (state = initialState, action) => {
         ...state,
         dataResults: {
           ...state.dataResults,
-          'Effective Runtime': action.payload
+          'Runtime': action.payload
         }
       }
 
