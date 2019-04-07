@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import dataPointsConstructor from './../../orpheus/orpheus/dataPoints';
+import dataPointsConstructor from '../controllers/DataParser';
 let dpc = new dataPointsConstructor();
 
 
@@ -19,7 +19,8 @@ const RunButton = props => {
       })
       .then(function (myJson) {
         dpc = new dataPointsConstructor();
-        dpc.getInfo(myJson)
+        dpc.getInfo(myJson);
+        dpc.tree = dpc.buildVis(dpc.data, {});
         props.setDataPoints(dpc.dataPoints)
         props.setNestingDepth(dpc.nestingDepth)
         resolve();
