@@ -6,7 +6,7 @@ const initialState = {
     'Database Requests': null,
     'Data Points': null,
     'Nesting Depth': null,
-    'Effective Runtime': null,
+    'Runtime': null,
   },
   dataVis: {
     resolverNum: null,
@@ -63,7 +63,7 @@ const appReducer = (state = initialState, action) => {
         ...state,
         dataResults: {
           ...state.dataResults,
-          'Effective Runtime': action.payload
+          'Runtime': action.payload
         }
       }
 

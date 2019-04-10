@@ -9,7 +9,6 @@ import styles from './../styles/ResultsContainer.scss'
 import ResultItemNum from '../components/ResultItemNum.jsx';
 
 const mapStateToProps = (store) => ({
-  codeInput: store.app.codeInput,
   dataResults: store.app.dataResults,
   networkLatency: store.app.networkLatency
 })
@@ -22,6 +21,7 @@ const ResultsContainer = props => {
   let counter = 0;
 
   for (let key in props.dataResults) {
+    // we render effective runtime differently than other containers
     if (key != 'Effective Runtime') {
       counter += 1
       resultsArr.push(
@@ -45,11 +45,9 @@ const ResultsContainer = props => {
   }
 
   return (
-    <React.Fragment>
-      <div id="results-wrapper">
-        {resultsArr}
-      </div>
-    </React.Fragment>
+    <div id="results-wrapper">
+      {resultsArr}
+    </div>
   )
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// orpheus functionality that parses response by traversing it
 import dataPointsConstructor from './../../orpheus/orpheus/dataPoints';
 let dpc = new dataPointsConstructor();
 
@@ -7,7 +8,7 @@ import styles from './../styles/RunButton.scss';
 
 
 const RunButton = props => {
-
+  // sends the GQL query
   const sendQuery = () => new Promise((resolve, reject) => {
     const code = props.codeInput;
     fetch(`http://localhost:3500/graphql?query=` + code)
@@ -43,17 +44,16 @@ const RunButton = props => {
         // figure out the number of resolvers
         const resolveNum = Object.keys(res.counts).length;
         props.setResolverNum(resolveNum);
-
         const resolverNames = Object.keys(res.counts);
 
-        props.setResolverNames(resolverNames)
-
+        props.setResolverNames(resolverNames);
         let average = (effectiveRunTime / requestArr.length)
         props.setEffectiveRuntime((average / 1000).toFixed(1))
         resolve();
       })
   });
 
+  // currently only works for MongoDB, not PG
   const getNetworkLatency = () => new Promise((resolve, reject) => {
     fetch(`http://localhost:3500/netStats`)
       .then(res => res.json())
@@ -66,6 +66,7 @@ const RunButton = props => {
       })
   });
 
+  // resets stats at /requests endpoint
   const resetResults = () => new Promise((resolve, reject) => {
     fetch(`http://localhost:3500/reset`)
       .then(res => res.json())
@@ -73,15 +74,13 @@ const RunButton = props => {
   })
 
   return (
-    <React.Fragment>
-      <button className="run" onClick={async () => {
-        await resetResults();
-        await sendQuery();
-        await getResults();
-        await setInterval(getNetworkLatency, 500);
-      }
-      }>Run</button>
-    </React.Fragment>
+    <button className="run" onClick={async () => {
+      await resetResults();
+      await sendQuery();
+      await getResults();
+      // await setInterval(getNetworkLatency, 500);
+    }
+    }>Run</button>
   )
 }
 export default RunButton;
