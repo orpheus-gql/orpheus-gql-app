@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import DataParser from '../controllers/DataParser';
 let dpc = new DataParser();
 
-
 import styles from './../styles/RunButton.scss';
 
 
@@ -19,9 +18,10 @@ const RunButton = props => {
       })
       .then(function (myJson) {
         dpc = new DataParser();
-        console.log(myJson);
+        RunButton.dpc = dpc; //FOR TESTING. REMOVE LATER
         dpc.getInfo(myJson.data);
-        dpc.tree = dpc.buildVis(myJson);
+        props.storeResponseData(myJson.data)
+        props.buildTreeVis(dpc.buildVis(myJson))
         props.setDataPoints(dpc.dataPoints)
         props.setNestingDepth(dpc.nestingDepth)
         resolve();
