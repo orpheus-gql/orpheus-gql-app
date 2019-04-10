@@ -1,12 +1,13 @@
-function dataParser() {
+function DataParser() {
   this.data = {};
   this.tree = {};
   this.dataPoints = 0;
   this.nestingDepth = 0;
 }
 
-dataPointsConstructor.prototype.getInfo = function(data, h = 0) {
+DataParser.prototype.getInfo = function(data, h = 0) {
   this.data = data;
+  console.log(data);
   if(h > this.nestingDepth) this.nestingDepth = h
   let keys = Object.keys(data)
   keys.forEach((element) => {
@@ -18,22 +19,6 @@ dataPointsConstructor.prototype.getInfo = function(data, h = 0) {
   })
 }
 
-function buildVis(inputNode, outputNode = {'title':'root', 'color':'black', 'children':[]}){
-  const keys = Object.keys(inputNode)
-  keys.forEach((key)=>{
-    const point = {
-      'title' : key,
-      'color' : 'black',
-      'size' : 25,
-      'children': []
-    }
-    if (typeof inputNode[key] === 'object'){
-      buildVis(inputNode[key], point)
-    }
-    outputNode.children.push(point);
-  })
-  return outputNode
-}
 
 /*
 const testInput = {
@@ -52,6 +37,21 @@ const testInput = {
 const testOutput = buildVis(testInput);
 console.log(JSON.stringify(testOutput, null, 2));
 */
+DataParser.prototype.buildVis = function buildVis(inputNode, outputNode = {'title':'root', 'color':'black', 'children':[]}){
+  const keys = Object.keys(inputNode)
+  keys.forEach((key)=>{
+    const point = {
+      'title' : key,
+      'color' : 'black',
+      'size' : 25,
+      'children': []
+    }
+    if (typeof inputNode[key] === 'object'){
+      buildVis(inputNode[key], point)
+    }
+    outputNode.children.push(point);
+  })
+  return outputNode
+}
 
-module.exports = dataPointsConstructor;
-module.exports.buildVis = buildVis;
+module.exports = DataParser;

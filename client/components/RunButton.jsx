@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import dataPointsConstructor from '../controllers/DataParser';
-let dpc = new dataPointsConstructor();
+import DataParser from '../controllers/DataParser';
+let dpc = new DataParser();
 
 
 import styles from './../styles/RunButton.scss';
@@ -18,9 +18,10 @@ const RunButton = props => {
         return response.json();
       })
       .then(function (myJson) {
-        dpc = new dataPointsConstructor();
-        dpc.getInfo(myJson);
-        dpc.tree = dpc.buildVis(dpc.data, {});
+        dpc = new DataParser();
+        console.log(myJson);
+        dpc.getInfo(myJson.data);
+        dpc.tree = dpc.buildVis(myJson);
         props.setDataPoints(dpc.dataPoints)
         props.setNestingDepth(dpc.nestingDepth)
         resolve();
