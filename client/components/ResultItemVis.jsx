@@ -9,10 +9,7 @@ const ResultItemVis = props => {
   const resolverNum = props.dataVis.resolverNum;
   const resolverNames = props.dataVis.resolverNames;
 
-  // and argiray of LineSeries components
-  // will change based on the number of resolvers we have
-  const lineSeriesArray = [];
-  // const labelSeriesArray = [];
+
 
   function generateLineSeriesData(int) {
     // this should be an array of ARRAYS of objects
@@ -34,7 +31,7 @@ const ResultItemVis = props => {
   }
 
 
-
+  // generate an array of objects
   function generateLabelSeriesData(arr) {
     const output = [];
     let length = arr.length
@@ -42,6 +39,7 @@ const ResultItemVis = props => {
 
     for (let i = 0; i < length; i += 1) {
       const step = distanceBetween * (i + 1);
+      // to position the end of the text to line up with the location data provided, labelAnchorX must be used
       const singleData = { x: 50, y: step, label: arr[i], style: { fontSize: 20 }, labelAnchorX: 'end' };
       output.push(singleData);
     }
@@ -50,25 +48,16 @@ const ResultItemVis = props => {
   const lineSeriesData = generateLineSeriesData(resolverNum);
   const labelSeriesData = generateLabelSeriesData(resolverNames)
 
+  // and array of LineSeries components
+  // will change based on the number of resolvers we have
+  const lineSeriesArray = [];
+
   for (let i = 0; i < resolverNum; i += 1) {
     lineSeriesArray.push(<LineSeries animation={'noWobble'}
       data={lineSeriesData[i]}
       curve={"curveMonotoneX"}
       color={'black'}
       key={i * Date.now()} />)
-  }
-
-  function generateLabelSeriesData(arr) {
-    const output = [];
-    let length = arr.length
-    const distanceBetween = Math.floor(100 / (length + 1));
-
-    for (let i = 0; i < length; i += 1) {
-      const step = distanceBetween * (i + 1);
-      const singleData = { x: 50, y: step, label: arr[i], style: { fontSize: 20 }, labelAnchorX: 'end' };
-      output.push(singleData);
-    }
-    return output;
   }
 
   return (
@@ -79,6 +68,7 @@ const ResultItemVis = props => {
       <FlexibleXYPlot className="result-vis" >
 
         {lineSeriesArray}
+        {/* render invisible lines at y 0 and y max to prevent autozoom in react vis */}
         <LineSeries
           data={[{ x: 0, y: 0 }]}
           color={'white'}
@@ -87,14 +77,8 @@ const ResultItemVis = props => {
           data={[{ x: 50, y: 100 }]}
           color={'white'}
         />
-        <LabelSeries data={labelSeriesData}>
-        </LabelSeries>
+        <LabelSeries data={labelSeriesData} />
       </FlexibleXYPlot>
-      {/* <button className="waves-effect waves-light btn-large" onClick={() => {
-        const randomResolverNum = Math.ceil(Math.random() * 20);
-        props.setResolverNum(randomResolverNum)
-      }
-      }>Random Resolver Number is: {resolverNum}</button> */}
     </div>
 
   )

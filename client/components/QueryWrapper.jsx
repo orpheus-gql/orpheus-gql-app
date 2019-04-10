@@ -1,5 +1,5 @@
 import React from 'react';
-import brace from 'brace';
+import brace from 'brace'; //dependency for ace editor; imports lang + themes
 import AceEditor from 'react-ace';
 import 'brace/mode/json';
 import 'brace/mode/javascript';
@@ -9,10 +9,10 @@ import styles from './../styles/QueryWrapper.scss';
 
 import RunButton from './RunButton.jsx'
 
-
+// component that provides editor for users to enter GQL request
 const QueryWrapper = props => {
 
-
+  // updates redux store as it gets new input
   function onChange(newValue) {
     props.updateCodeInput(newValue);
   }
