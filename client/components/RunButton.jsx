@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import dataPointsConstructor from './../../orpheus/orpheus/dataPoints';
-let dpc = new dataPointsConstructor();
-
+import DataParser from '../controllers/DataParser';
+let dpc = new DataParser();
 
 import styles from './../styles/RunButton.scss';
 
@@ -18,7 +17,11 @@ const RunButton = props => {
         return response.json();
       })
       .then(function (myJson) {
-        dpc.getInfo(myJson)
+        dpc = new DataParser();
+        RunButton.dpc = dpc; //FOR TESTING. REMOVE LATER
+        dpc.getInfo(myJson.data);
+        props.storeResponseData(myJson.data)
+        props.buildTreeVis(dpc.buildVis(myJson))
         props.setDataPoints(dpc.dataPoints)
         props.setNestingDepth(dpc.nestingDepth)
         resolve();

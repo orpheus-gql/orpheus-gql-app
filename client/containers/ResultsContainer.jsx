@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as actions from "../actions/actions";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import TreeVis from '../components/Treemap.jsx';
 
 import styles from './../styles/ResultsContainer.scss'
 
@@ -11,7 +12,8 @@ import ResultItemNum from '../components/ResultItemNum.jsx';
 const mapStateToProps = (store) => ({
   codeInput: store.app.codeInput,
   dataResults: store.app.dataResults,
-  networkLatency: store.app.networkLatency
+  networkLatency: store.app.networkLatency,
+  treeVis: store.app.dataVis.visObj
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
@@ -46,6 +48,7 @@ const ResultsContainer = props => {
 
   return (
     <React.Fragment>
+      <TreeVis treeVis={props.treeVis} />
       <div id="results-wrapper">
         {resultsArr}
       </div>
