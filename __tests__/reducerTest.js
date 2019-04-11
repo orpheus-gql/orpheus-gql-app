@@ -1,5 +1,5 @@
-const appReducer = require('../client/reducers/appReducer')
-
+// const appReducer = require('../client/reducers/appReducer.js')
+import appReducer from '../client/reducers/appReducer'
 describe('App reducer', () => {
   let state;
 
