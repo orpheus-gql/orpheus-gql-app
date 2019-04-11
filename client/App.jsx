@@ -12,9 +12,6 @@ import ResultsContainer from './containers/ResultsContainer.jsx';
 import ResultItemVis from './components/ResultItemVis.jsx';
 
 
-import TreeVis from './components/Treemap.jsx'
-
-
 const mapStateToProps = (store) => ({
   codeInput: store.app.codeInput,
   dataVis: store.app.dataVis,
