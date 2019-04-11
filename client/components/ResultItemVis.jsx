@@ -75,9 +75,12 @@ const ResultItemVis = props => {
 
         {lineSeriesArray}
 
+<<<<<<< HEAD
+=======
         <LabelSeries data={labelSeriesData}>
         </LabelSeries>
 
+>>>>>>> feeb7b7d6f62507617e2ace106d42df9036a813f
       </FlexibleXYPlot>
       {/* <button className="waves-effect waves-light btn-large" onClick={() => {
         const randomResolverNum = Math.ceil(Math.random() * 20);
