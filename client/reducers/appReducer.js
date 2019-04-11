@@ -11,6 +11,9 @@ const initialState = {
   dataVis: {
     resolverNum: null,
     resolverNames: [],
+
+    results:{},
+    visObj:{}
   },
   networkLatency: null,
 }
@@ -22,6 +25,24 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         codeInput: action.payload
+      }
+
+    case types.BUILD_TREE_VIS:
+      return {
+        ...state,
+        dataVis: {
+          ...state.dataVis,
+          visObj: action.payload
+        }
+      }
+
+    case types.STORE_RESPONSE_DATA:
+      return {
+        ...state,
+        dataVis: {
+          ...state.dataVis,
+          results: action.payload
+        }
       }
 
     case types.SET_DATABASE_REQUESTS:

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import dataPointsConstructor from './../../orpheus/orpheus/dataPoints';
-let dpc = new dataPointsConstructor();
+
+import DataParser from '../controllers/DataParser';
+let dpc = new DataParser();
 
 import styles from './../styles/RunButton.scss';
 
@@ -16,8 +17,11 @@ const RunButton = props => {
         return response.json();
       })
       .then(function (myJson) {
-        dpc = new dataPointsConstructor();
-        dpc.getInfo(myJson)
+        dpc = new DataParser();
+        RunButton.dpc = dpc; //FOR TESTING. REMOVE LATER
+        dpc.getInfo(myJson.data);
+        props.storeResponseData(myJson.data)
+        props.buildTreeVis(dpc.buildVis(myJson))
         props.setDataPoints(dpc.dataPoints)
         props.setNestingDepth(dpc.nestingDepth)
         resolve();
@@ -41,16 +45,13 @@ const RunButton = props => {
         // figure out the number of resolvers
         const resolveNum = Object.keys(res.counts).length;
         props.setResolverNum(resolveNum);
-<<<<<<< HEAD
-        let average = (effectiveRunTime / requestArr.length);
-=======
+
 
         const resolverNames = Object.keys(res.counts);
 
         props.setResolverNames(resolverNames)
 
         let average = (effectiveRunTime / requestArr.length)
->>>>>>> feeb7b7d6f62507617e2ace106d42df9036a813f
         props.setEffectiveRuntime((average / 1000).toFixed(1))
         resolve();
       })

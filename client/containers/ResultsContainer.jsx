@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as actions from "../actions/actions";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import DataVis from '../components/DataVis.jsx';
 
 import styles from './../styles/ResultsContainer.scss'
 
@@ -11,7 +12,8 @@ import ResultItemNum from '../components/ResultItemNum.jsx';
 const mapStateToProps = (store) => ({
   codeInput: store.app.codeInput,
   dataResults: store.app.dataResults,
-  networkLatency: store.app.networkLatency
+  networkLatency: store.app.networkLatency,
+  visObj: store.app.dataVis.visObj
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
@@ -46,11 +48,13 @@ const ResultsContainer = props => {
 
   return (
     <React.Fragment>
+      <DataVis visObj={props.visObj} />
       <div id="results-wrapper">
         {resultsArr}
       </div>
     </React.Fragment>
   )
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultsContainer);

@@ -16,14 +16,19 @@ const QueryContainer = props => (
   <React.Fragment>
     <QueryWrapper
       codeInput={props.codeInput}
+      buildTreeVis={props.buildTreeVis}
+      storeResponseData={props.storeResponseData}
       updateCodeInput={props.updateCodeInput}
       setDatabaseRequests={props.setDatabaseRequests}
+      setDataPoints = {props.setDataPoints}
+      setNestingDepth = {props.setNestingDepth}
       setEffectiveRuntime={props.setEffectiveRuntime}
       setDataPoints={props.setDataPoints}
       setNestingDepth={props.setNestingDepth}
       setNetworkLatency={props.setNetworkLatency}
       setResolverNum={props.setResolverNum}
-      setResolverNames={props.setResolverNames} />
+      setResolverNames={props.setResolverNames} 
+  />
   </React.Fragment>
 );
 
