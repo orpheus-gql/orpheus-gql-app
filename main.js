@@ -6,6 +6,8 @@ const { app, BrowserWindow, Menu } = electron;
 
 let mainWindow;
 
+// IPCs here
+
 app.on('ready', function () {
   // create new window once app is ready
   mainWindow = new BrowserWindow({}); // object is empty because there's no configuration currently needed

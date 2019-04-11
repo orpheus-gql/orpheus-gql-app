@@ -12,7 +12,6 @@ const app = express();
 // allow cross-origin requests
 app.use(cors());
 
-
 mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true })
 
 mongoose.connection.once('open', () => {
@@ -41,7 +40,7 @@ app.get('/netStats', (req, res)=>{
 
 let resolverCounter = schema.resolverCounter;
 
-let netStats = new NetworkConstructor()
+let netStats = new NetworkConstructor();
 
 setInterval(function () { 
   netStats.ping();

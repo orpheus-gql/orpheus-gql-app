@@ -35,7 +35,7 @@ export default function TreeVis(props){
             className: 'nested-tree-example',
             colorType: 'literal',
             colorRange: ['#88572C'],
-            data: props.treeVis,
+            data: props.visObj,
             mode: MODE[0],
             renderMode: 'SVG',
             height: 500,
