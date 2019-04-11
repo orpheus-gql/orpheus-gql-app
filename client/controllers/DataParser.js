@@ -41,14 +41,14 @@ DataParser.prototype.buildVis = function buildVis(inputNode, outputNode = {'titl
   const keys = Object.keys(inputNode)
   keys.forEach((key)=>{
     const point = {
-      'title' : inputNode.name,
+      'title' : key,
       'color' : 'black',
       'value' : 2500,
       'children': []
     }
     if (typeof inputNode[key] === 'object'){
       buildVis(inputNode[key], point)
-    }
+    } 
     outputNode.children.push(point);
   })
   return outputNode
