@@ -48,8 +48,8 @@ const ResultItemVis = props => {
     const distanceBetween = Math.floor(100 / (length + 1));
 
     for (let i = 0; i < length; i += 1) {
-      const step = distanceBetween * (i+1);
-      const singleData = { x: 50, y: step, label: arr[i], style: {fontSize: 20}, labelAnchorX: 'end' };
+      const step = distanceBetween * (i + 1);
+      const singleData = { x: 50, y: step, label: arr[i], style: { fontSize: 20 }, labelAnchorX: 'end' };
       output.push(singleData);
     }
     return output;
@@ -75,12 +75,9 @@ const ResultItemVis = props => {
 
         {lineSeriesArray}
 
-<<<<<<< HEAD
-=======
         <LabelSeries data={labelSeriesData}>
         </LabelSeries>
 
->>>>>>> feeb7b7d6f62507617e2ace106d42df9036a813f
       </FlexibleXYPlot>
       {/* <button className="waves-effect waves-light btn-large" onClick={() => {
         const randomResolverNum = Math.ceil(Math.random() * 20);
