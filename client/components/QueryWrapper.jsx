@@ -33,11 +33,14 @@ const QueryWrapper = props => {
         }}
       />
       <RunButton setDataPoints={props.setDataPoints}
-        setNestingDepth={props.setNestingDepth}
-        setNetworkLatency={props.setNetworkLatency}
-        setEffectiveRuntime={props.setEffectiveRuntime}
-        setDatabaseRequests={props.setDatabaseRequests}
         codeInput={props.codeInput}
+        buildTreeVis={props.buildTreeVis}
+        storeResponseData={props.storeResponseData}
+        setDatabaseRequests={props.setDatabaseRequests}
+        setDataPoints = {props.setDataPoints}
+        setNestingDepth={props.setNestingDepth}
+        setEffectiveRuntime={props.setEffectiveRuntime}
+        setNetworkLatency={props.setNetworkLatency}
         setResolverNum={props.setResolverNum}
         setResolverNames={props.setResolverNames}
       />

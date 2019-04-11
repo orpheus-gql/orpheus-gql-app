@@ -7,6 +7,16 @@ export const updateCodeInput = (value) => ({
   payload: value,
 });
 
+export const buildTreeVis = (value) => ({
+  type: types.BUILD_TREE_VIS,
+  payload: value,
+})
+
+export const storeResponseData = (value) => ({
+  type: types.STORE_RESPONSE_DATA,
+  payload: value,
+})
+
 export const setDatabaseRequests = (value) => ({
   type: types.SET_DATABASE_REQUESTS,
   payload: value,
