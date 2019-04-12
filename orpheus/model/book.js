@@ -7,7 +7,7 @@ const bookSchema = new Schema({
   genre: String,
   authorId: String
 })
-
+// timers for displayed seconds on front end
 bookSchema.pre('find', function(){reqTracker.preRequest(this)})
 bookSchema.post('find', function(){
   reqTracker.postRequest(this, 'bookSchema')});

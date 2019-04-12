@@ -4,7 +4,7 @@ function NetworkConstructor() {
   this.history = [];
   this.average = 0;
 };
-
+// reaches out to the database and measures the  time it takes to reach it; network latency
 NetworkConstructor.prototype.ping = function() {
   const now = Date.now();
   let elapsedTime;

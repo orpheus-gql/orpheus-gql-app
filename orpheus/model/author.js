@@ -6,7 +6,7 @@ const authorSchema = new Schema({
   name: String,
   age: Number,
 });
-
+// timer for author resolver
 authorSchema.pre('findOne', function(){reqTracker.preRequest(this)});
 authorSchema.post('findOne', function(){
   reqTracker.postRequest(this, 'authorSchema')});
