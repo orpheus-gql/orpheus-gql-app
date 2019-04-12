@@ -23,6 +23,11 @@
   "bugs": {
     "url": "https://github.com/orpheus-gql/orpheus-gql-app/issues"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "^.+\\.(css|scss)$": "identity-obj-proxy"
+    }
+  },
   "homepage": "https://github.com/orpheus-gql/orpheus-gql-app#readme",
   "dependencies": {
     "axios": "^0.18.0",
@@ -36,9 +41,11 @@
     "d3-shape": "^1.3.5",
     "electron": "^4.1.1",
     "enzyme": "^3.9.0",
+    "enzyme-to-json": "^3.3.5",
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
     "graphql": "^14.2.1",
+    "identity-obj-proxy": "^3.0.0",
     "lodash": "^4.17.11",
     "mongoose": "^5.4.20",
     "node-sass": "^4.11.0",
