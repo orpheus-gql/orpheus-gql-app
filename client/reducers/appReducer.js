@@ -11,7 +11,6 @@ const initialState = {
   dataVis: {
     resolverNum: null,
     resolverNames: [],
-
     results:{},
     visObj:{}
   },
