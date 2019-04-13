@@ -21,7 +21,7 @@ const RunButton = props => {
         RunButton.dpc = dpc; //FOR TESTING. REMOVE LATER
         dpc.getInfo(myJson.data);
         props.storeResponseData(myJson.data)
-        props.buildTreeVis(dpc.buildVis(myJson))
+        props.buildTreeVis(dpc.buildVis(myJson.data))
         props.setDataPoints(dpc.dataPoints)
         props.setNestingDepth(dpc.nestingDepth)
         resolve();
