@@ -19,35 +19,17 @@ DataParser.prototype.getInfo = function(data, h = 0) {
   })
 }
 
-
-/*
-const testInput = {
-  'a': 'a',
-  'b': 'b',
-  'c': 'c',
-  'd': {
-    'd1': 'd1',
-    'd2': {
-        'd22':'d22'
-      },
-    'd3': 'd3'
-    }
-}
-
-const testOutput = buildVis(testInput);
-console.log(JSON.stringify(testOutput, null, 2));
-*/
-DataParser.prototype.buildVis = function buildVis(inputNode, outputNode = {'title':'root', 'color':'black', 'children':[]}){
+DataParser.prototype.buildVis = function buildVis(inputNode, outputNode = {'title':'root', 'color':'white', 'children':[]}, depth = 0){
   const keys = Object.keys(inputNode)
   keys.forEach((key)=>{
     const point = {
       'title' : key,
-      'color' : 'black',
-      'value' : 2500,
+      'color': 'blue',
+      'value' : depth,
       'children': []
     }
     if (typeof inputNode[key] === 'object'){
-      buildVis(inputNode[key], point)
+      buildVis(inputNode[key], point, depth+1)
     } 
     outputNode.children.push(point);
   })
