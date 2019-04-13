@@ -1,5 +1,6 @@
 // const appReducer = require('../client/reducers/appReducer.js')
 import appReducer from '../client/reducers/appReducer'
+import { app } from 'electron';
 describe('App reducer', () => {
   let state;
 

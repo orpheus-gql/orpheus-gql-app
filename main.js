@@ -16,7 +16,7 @@ app.on('ready', function () {
     pathname: path.join(__dirname, 'index-app.html'),
     protocol: 'file:',
   }));
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   // Quit app when main window is closed
   mainWindow.on('closed', function () {
