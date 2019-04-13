@@ -7,7 +7,7 @@ describe('/graphql', () => {
       return request(server)
       .get('/graphql')
       .expect('Content-Type', /application\/json/)
-      .expect(200);
+      .expect(400);
     })
   })
 })
@@ -34,12 +34,12 @@ describe('/requests', () => {
       .get('/requests')
       .expect(res => {
         if (typeof res.body !== 'object'){
+          throw new Error('response is not an object')
+        }
+        if (typeof res.body.counts !== 'object'){
           throw new Error('items in the array are not object')
         }
-        if (typeof res.body[0] !== 'object'){
-          throw new Error('items in the array are not object')
-        }
-        if (!Array.isArray(res.body[1])){
+        if (!Array.isArray(res.body.history)){
           throw new Error('items in the object are not array')
         }
       })
@@ -53,10 +53,20 @@ describe('/reset', () => {
     it('resets the entire counts object', () => {
       return request(server)
       .get('/reset')
-      .expect(typeof res.body).toEqual('object');
+      .expect(res => {
+        if (Object.keys(res.body.counts).length !== 0) {
+          throw new Error('counts not reset')
+        }
+        if (res.body.history.length !== 0) {
+          throw new Error('history not reset')
+        }
+        if (res.body.requests.length !== 0) {
+          throw new Error('requests not reset')
+        }
+      })
       .expect(200);
     })
-  })  
+  })
 })
 
 describe('/netstats', () => {
@@ -68,10 +78,10 @@ describe('/netstats', () => {
         if (typeof res.body !== 'object'){
           throw new Error('items in the array are not object')
         }
-        if (!Array.isArray(res.body[0])){
+        if (!Array.isArray(res.body.history)){
           throw new Error('items in the array are not object')
         }
-        if (typeof res.body[1] !== 'number'){
+        if (typeof res.body.average !== 'number'){
           throw new Error('item in the array is not number')
         }
       })
