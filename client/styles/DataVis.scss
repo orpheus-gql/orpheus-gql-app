@@ -1,0 +1,12 @@
+@import "./node_modules/react-vis/dist/style";
+
+.sunburst-wrapper {
+  flex: 1;
+  max-height: calc(100vh - 80px);
+  width: 60vw;
+  .sunburst {
+    margin: 0 auto;
+    flex: 1;
+    min-width: 300px;
+  }
+}

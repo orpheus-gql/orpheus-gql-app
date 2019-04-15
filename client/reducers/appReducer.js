@@ -3,16 +3,16 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   codeInput: '',
   dataResults: {
-    'Database Requests': null,
-    'Data Points': null,
-    'Nesting Depth': null,
-    'Effective Runtime': null,
+    'Database Requests': 2,
+    'Data Points': 44,
+    'Nesting Depth': 5,
+    'Effective Runtime': 2,
   },
   dataVis: {
     resolverNum: null,
     resolverNames: [],
-    results:{},
-    visObj:{}
+    results: {},
+    visObj: {}
   },
   networkLatency: null,
 }
