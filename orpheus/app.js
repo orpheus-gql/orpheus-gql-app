@@ -6,6 +6,8 @@ const cors = require('cors');
 const NetworkConstructor = require('./orpheus/ping');
 const reqTracker = require('./orpheus/trackResolver');
 const dataPoints = require('./orpheus/dataPoints');
+const orpheusContext = require('./orpheus/context');
+const orpheusExtension = require('./orpheus/extension');
 require('dotenv').config();
 const app = express();
 
@@ -24,7 +26,9 @@ let netStats = new NetworkConstructor();
 // need a schema to be created and passed into middleware function; to describe how the data on our graph will look
 app.use('/graphql', graphqlHTTP({
   schema,
-  graphiql: true // set this to be true so we can use graphiql on our local host
+  graphiql: true, // set this to be true so we can use graphiql on our local host
+  context: orpheusContext,
+  extensions: orpheusExtension
 }));
 
 let resolverCounter = schema.resolverCounter;
