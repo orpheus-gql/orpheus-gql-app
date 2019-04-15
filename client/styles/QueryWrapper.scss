@@ -1,3 +1,5 @@
+@import 'variables';
+
 .ace-wrapper {
   width: 300px;
   flex: 1;
@@ -8,7 +10,7 @@
   width: 100% !important;
   height: calc(100vh - 48px) !important;
   display: inline-block;
-  color: #7fa6bd;
+  color: $primary-color;
 
   .ace_content {
     min-height: 100vh;

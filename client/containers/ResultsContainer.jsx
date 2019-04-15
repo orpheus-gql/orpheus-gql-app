@@ -46,7 +46,7 @@ const ResultsContainer = props => {
     <React.Fragment>
       <div id="results-container">
         <DataVis visObj={props.visObj} />
-        <div id="result-nums">
+        <div id="result-nums" className={(props.dataResults["Data Points"] ? '' : 'off')}>
           {resultsArr}
         </div>
       </div>
