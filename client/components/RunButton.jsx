@@ -78,10 +78,7 @@ const RunButton = props => {
   return (
     <React.Fragment>
       <button className="run" onClick={async () => {
-        await resetResults();
         await sendQuery();
-        await getResults();
-        // await setInterval(getNetworkLatency, 500);
       }
       }>Run</button>
     </React.Fragment>
