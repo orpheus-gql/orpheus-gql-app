@@ -9,7 +9,8 @@ const RunButton = props => {
 
   const sendQuery = () => new Promise((resolve, reject) => {
     const code = props.codeInput;
-    fetch(`http://localhost:3500/graphql?query=` + code)
+    const context = `&context={startTime: Date.now()}`;
+    fetch(`http://localhost:3500/graphql?query=` + code + context)
       .then(function (response) {
         if (response.status !== 200) {
           return window.alert('Please refactor your query')
@@ -24,6 +25,7 @@ const RunButton = props => {
         props.buildTreeVis(dpc.buildVis(myJson.data))
         props.setDataPoints(dpc.dataPoints)
         props.setNestingDepth(dpc.nestingDepth)
+        props.setEffectiveRuntime((myJson.extensions.runTime / 1000).toFixed(1))
         resolve();
       });
   });
@@ -78,10 +80,7 @@ const RunButton = props => {
   return (
     <React.Fragment>
       <button className="run" onClick={async () => {
-        await resetResults();
         await sendQuery();
-        await getResults();
-        // await setInterval(getNetworkLatency, 500);
       }
       }>Run</button>
     </React.Fragment>
