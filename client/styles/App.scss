@@ -1,18 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   background: #e8e8e8;
   font-size: 62.5%;
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: sans-serif;
   font-weight: 600;
 }
 body {
   margin: 0;
 }
 
+#root {
+  min-height: 100vh;
+  overflow:hidden;
+}
+
 #content {
+  height: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 40px;
 }
 
 

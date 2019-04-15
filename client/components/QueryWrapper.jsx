@@ -27,12 +27,14 @@ const QueryWrapper = props => {
         onChange={onChange}
         value={props.codeInput}
         name="ace-editor"
-        fontSize={18}
+        highlightActiveLine={false}
+        fontSize={10}
         showPrintMargin={false}
-        showGutter={false}
+        showGutter={true}
         setOptions={{
-          showLineNumbers: false,
+          showLineNumbers: true,
           tabSize: 2,
+          useWorker: false,
         }}
       />
       <RunButton setDataPoints={props.setDataPoints}

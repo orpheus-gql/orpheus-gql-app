@@ -14,6 +14,7 @@ configure({ adapter: new Adapter() });
 describe('React unit tests', () => {
   describe('Header', () => {
     let wrapper;
+
     beforeAll(() => {
       wrapper = shallow(<Header />);
     });
@@ -27,6 +28,7 @@ describe('React unit tests', () => {
       expect(wrapper.find('div').children().find('h1').text()).toEqual('Orpheus GQL');
     });
   });
+
   describe('QueryWrapper', () => {
     let wrapper;
     const props = {
@@ -42,6 +44,7 @@ describe('React unit tests', () => {
       setResolverNum: 'resolverNum_test',
       setResolverNames: 'resolverNames_test'
     };
+    
     beforeAll(() => {
       wrapper = shallow(<QueryWrapper {...props} />);
     })
@@ -51,11 +54,11 @@ describe('React unit tests', () => {
       expect(wrapper.prop('className')).toEqual('ace-wrapper');
       // expect(wrapper.childAt(0).prop('name')).toEqual('ace-editor');
       // expect(wrapper.containsMatchingElement(<AceEditor />)).toBe(true);
-      expect(wrapper.containsMatchingElement(<RunButton/>)).toBe(true);
-   
+      expect(wrapper.containsMatchingElement(<RunButton />)).toBe(true);
+    })
+
     it('QueryWrapper should display all of its text props inside a <RunButton> component', () => {
       expect(wrapper.containsMatchingElement(<RunButton />)).toBe(true);
     });
   })
-
-}) 
+})

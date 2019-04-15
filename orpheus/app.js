@@ -18,6 +18,8 @@ mongoose.connection.once('open', () => {
   console.log('connected to database');
 })
 
+let netStats = new NetworkConstructor();
+
 // when someone goes to below route, express will look and see that you want to interact with graphQL. the control of this request will be hand-offed to the middleware. (graphqlHTTP)
 // need a schema to be created and passed into middleware function; to describe how the data on our graph will look
 app.use('/graphql', graphqlHTTP({
@@ -25,27 +27,8 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true // set this to be true so we can use graphiql on our local host
 }));
 
-app.get('/resolvers', (req, res) => { res.json(resolverCounter) })
-
-app.get('/requests', (req, res) => { res.json(reqTracker) })
-
-app.get('/reset', (req, res) => { 
-  reqTracker.reset();
-  res.json(reqTracker);
-})
-
-app.get('/netStats', (req, res)=>{
-  res.json(netStats)
-})
-
 let resolverCounter = schema.resolverCounter;
 
-let netStats = new NetworkConstructor();
-
-setInterval(function () { 
-  netStats.ping();
-  console.log(netStats.history);
-}, 3000);
 
 app.listen(3500, () => {
   console.log('now listening for requests on port 3500')
