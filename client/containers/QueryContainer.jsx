@@ -19,6 +19,7 @@ const QueryContainer = props => (
       buildTreeVis={props.buildTreeVis}
       storeResponseData={props.storeResponseData}
       updateCodeInput={props.updateCodeInput}
+      updateCodeHistory={props.updateCodeHistory}
       setDatabaseRequests={props.setDatabaseRequests}
       setDataPoints = {props.setDataPoints}
       setNestingDepth = {props.setNestingDepth}

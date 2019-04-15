@@ -2,6 +2,7 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   codeInput: '',
+  codeHistory: [],
   dataResults: {
     'Database Requests': null,
     'Data Points': null,
@@ -25,6 +26,17 @@ const appReducer = (state = initialState, action) => {
       return {
         ...state,
         codeInput: action.payload
+      }
+    
+    case types.UPDATE_CODE_HISTORY:
+      let codeHistory = state.codeHistory
+      let code = action.payload
+      if(codeHistory.indexOf(code) === -1) {
+        codeHistory.push(code)
+      }
+      return {
+        ...state,
+        codeHistory
       }
 
     case types.BUILD_TREE_VIS:

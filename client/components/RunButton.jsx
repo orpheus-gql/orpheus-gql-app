@@ -7,12 +7,17 @@ import styles from './../styles/RunButton.scss';
 
 const RunButton = props => {
 
+  const updateCodeHistory = () => new Promise((resolve, reject) => {
+    props.updateCodeHistory(props.codeInput);
+    resolve();
+  }); 
+  
   const sendQuery = () => new Promise((resolve, reject) => {
     const code = props.codeInput;
     fetch(`http://localhost:3500/graphql?query=` + code)
       .then(function (response) {
         if (response.status !== 200) {
-          return window.alert('Please refactor your query')
+          return window.alert('Please refactor your query');
         }
         return response.json();
       })
@@ -20,10 +25,10 @@ const RunButton = props => {
         dpc = new DataParser();
         RunButton.dpc = dpc; //FOR TESTING. REMOVE LATER
         dpc.getInfo(myJson.data);
-        props.storeResponseData(myJson.data)
-        props.buildTreeVis(dpc.buildVis(myJson))
-        props.setDataPoints(dpc.dataPoints)
-        props.setNestingDepth(dpc.nestingDepth)
+        props.storeResponseData(myJson.data);
+        props.buildTreeVis(dpc.buildVis(myJson));
+        props.setDataPoints(dpc.dataPoints);
+        props.setNestingDepth(dpc.nestingDepth);
         resolve();
       });
   });
@@ -39,7 +44,7 @@ const RunButton = props => {
         let effectiveRunTime = 0;
         requestArr.forEach((element) => {
           if (element.time) {
-            effectiveRunTime += element.time
+            effectiveRunTime += element.time;
           }
         });
         // figure out the number of resolvers
@@ -49,10 +54,10 @@ const RunButton = props => {
 
         const resolverNames = Object.keys(res.counts);
 
-        props.setResolverNames(resolverNames)
+        props.setResolverNames(resolverNames);
 
-        let average = (effectiveRunTime / requestArr.length)
-        props.setEffectiveRuntime((average / 1000).toFixed(1))
+        let average = (effectiveRunTime / requestArr.length);
+        props.setEffectiveRuntime((average / 1000).toFixed(1));
         resolve();
       })
   });
@@ -63,7 +68,7 @@ const RunButton = props => {
       .then(res => {
         let netStatsArr = res.history;
         let networkLatency = netStatsArr[netStatsArr.length - 1];
-        props.setNetworkLatency((networkLatency / 1000).toFixed(2))
+        props.setNetworkLatency((networkLatency / 1000).toFixed(2));
         // console.log((networkLatency / 1000).toFixed(2))
         // resolve();
       })
@@ -78,6 +83,7 @@ const RunButton = props => {
   return (
     <React.Fragment>
       <button className="run" onClick={async () => {
+        await updateCodeHistory();
         await resetResults();
         await sendQuery();
         await getResults();
