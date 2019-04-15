@@ -27,25 +27,8 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true // set this to be true so we can use graphiql on our local host
 }));
 
-app.get('/resolvers', (req, res) => { res.json(resolverCounter) })
-
-app.get('/requests', (req, res) => { res.json(reqTracker) })
-
-app.get('/reset', (req, res) => { 
-  reqTracker.reset();
-  res.json(reqTracker);
-})
-
-app.get('/netStats', (req, res)=>{
-  res.json(netStats)
-})
-
 let resolverCounter = schema.resolverCounter;
 
-setInterval(function () { 
-  netStats.ping();
-  console.log(netStats.history);
-}, 3000);
 
 app.listen(3500, () => {
   console.log('now listening for requests on port 3500')

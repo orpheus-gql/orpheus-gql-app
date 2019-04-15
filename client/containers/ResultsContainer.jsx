@@ -3,11 +3,9 @@ import * as actions from "../actions/actions";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import DataVis from '../components/DataVis.jsx';
+import ResultItemNum from './../components/ResultItemNum.jsx'
 
 import styles from './../styles/ResultsContainer.scss'
-
-// Import Children
-import ResultItemNum from '../components/ResultItemNum.jsx';
 
 const mapStateToProps = (store) => ({
   codeInput: store.app.codeInput,
@@ -22,7 +20,6 @@ const ResultsContainer = props => {
 
   let resultsArr = [];
   let counter = 0;
-
   for (let key in props.dataResults) {
     if (key != 'Effective Runtime') {
       counter += 1
@@ -45,12 +42,13 @@ const ResultsContainer = props => {
         />)
     }
   }
-
   return (
     <React.Fragment>
-      <DataVis visObj={props.visObj} />
-      <div id="results-wrapper">
-        {resultsArr}
+      <div id="results-container">
+        <DataVis visObj={props.visObj} />
+        <div id="result-nums" className={(props.dataResults["Data Points"] ? '' : 'off')}>
+          {resultsArr}
+        </div>
       </div>
     </React.Fragment>
   )

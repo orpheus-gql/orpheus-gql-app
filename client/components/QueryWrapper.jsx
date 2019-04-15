@@ -14,6 +14,7 @@ const QueryWrapper = props => {
   function onChange(newValue) {
     props.updateCodeInput(newValue);
   }
+
   return (
     <div className="ace-wrapper">
       <AceEditor
@@ -22,26 +23,18 @@ const QueryWrapper = props => {
         onChange={onChange}
         value={props.codeInput}
         name="ace-editor"
-        fontSize={18}
+        highlightActiveLine={false}
+        fontSize={10}
         showPrintMargin={false}
-        showGutter={false}
+        showGutter={true}
         setOptions={{
-          showLineNumbers: false,
+          showLineNumbers: true,
           tabSize: 2,
+          useWorker: false,
         }}
       />
-      <RunButton setDataPoints={props.setDataPoints}
-        codeInput={props.codeInput}
-        buildTreeVis={props.buildTreeVis}
-        storeResponseData={props.storeResponseData}
-        setDatabaseRequests={props.setDatabaseRequests}
-        setDataPoints = {props.setDataPoints}
-        setNestingDepth={props.setNestingDepth}
-        setEffectiveRuntime={props.setEffectiveRuntime}
-        setNetworkLatency={props.setNetworkLatency}
-        setResolverNum={props.setResolverNum}
-        setResolverNames={props.setResolverNames}
-      />
+
+
     </div>
   )
 };

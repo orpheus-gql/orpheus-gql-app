@@ -1,12 +1,20 @@
+@import 'variables';
+
 .ace-wrapper {
   width: 300px;
-  // text-align: center;
+  flex: 1;
+  height: calc(100vh - 48px);
 }
 
 #ace-editor.ace-gruvbox {
   width: 100% !important;
-  height: 500px !important;
+  height: calc(100vh - 48px) !important;
   display: inline-block;
-  color: #7fa6bd;
+  color: $primary-color;
+
+  .ace_content {
+    min-height: 100vh;
+  }
+
 }
 
