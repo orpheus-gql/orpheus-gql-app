@@ -21,6 +21,7 @@ const Header = (props) => {
       <h1>Orpheus GQL</h1>
       <RunButton setDataPoints={props.setDataPoints}
         codeInput={props.codeInput}
+        updateCodeHistory={props.updateCodeHistory}
         buildTreeVis={props.buildTreeVis}
         storeResponseData={props.storeResponseData}
         setDatabaseRequests={props.setDatabaseRequests}
