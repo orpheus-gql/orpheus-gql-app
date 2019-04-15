@@ -23,7 +23,7 @@ DataParser.prototype.buildVis = function buildVis(inputNode, outputNode = {'titl
   const keys = Object.keys(inputNode)
   keys.forEach((key)=>{
     const point = {
-      'title' : key,
+      'name' : key,
       'color': 'blue',
       'value' : depth,
       'children': []

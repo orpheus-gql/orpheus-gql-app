@@ -77,19 +77,22 @@ function DataVis(props) {
   const [hoverState, setHoverState] = useState(false);
   return (
     <div className="sunburst-wrapper"
-      onMouseOver={() => {
+      onMouseOver={(data) => {
+        console.log(data);
         setHoverState(!hoverState)
       }} >
 
 
 
       <FlexibleSunburst
+        padAngle={0.01}
         hideRootNode
         colorType='literal'
         data={props.visObj}
 
         animation='true'
         className='sunburst'
+        getLabel={d=>d.name}
         getSize={d => d.value}
         getColor={d => {
           if (d.value === undefined) {
