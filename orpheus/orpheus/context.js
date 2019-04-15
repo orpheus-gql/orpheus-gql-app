@@ -1,1 +1,7 @@
-export default { startTime: Date.now() }
+const orpheusContext = () => {
+  return {
+    startTime: Date.now()
+  }
+}
+
+module.exports = orpheusContext;

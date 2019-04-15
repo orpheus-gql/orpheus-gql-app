@@ -1,2 +1,8 @@
-const runTimeResult = Date.now() - context.startTime;
-export default runTimeResult;
+const orpheusExtension = ({ context }) => {
+  const runTimeResult = Date.now() - context.startTime;
+  return {
+    runTime: runTimeResult
+  }
+}
+
+module.exports = orpheusExtension;
