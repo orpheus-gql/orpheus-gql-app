@@ -1,12 +1,16 @@
 .ace-wrapper {
   width: 300px;
-  // text-align: center;
 }
 
 #ace-editor.ace-gruvbox {
   width: 100% !important;
-  height: 500px !important;
+  height: 100vh !important;
   display: inline-block;
   color: #7fa6bd;
+
+  .ace_content {
+    min-height: 100vh;
+  }
+
 }
 

@@ -1,16 +1,38 @@
 import React from 'react';
-import ReactSVG from 'react-svg'
 import styles from './../styles/Header.scss';
-// import logo from './../assets/ogql.svg';
-// var logo = require('svg-inline-loader?./../../client/assets/ogql.svg');
+import RunButton from './RunButton.jsx';
 
-const Header = () => {
+import * as actions from "../actions/actions";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+const mapStateToProps = (store) => ({
+  codeInput: store.app.codeInput,
+  dataResults: store.app.dataResults,
+  networkLatency: store.app.networkLatency,
+  visObj: store.app.dataVis.visObj
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+
+const Header = (props) => {
   return (
     <div id="header">
-      <ReactSVG className="logo-wrapper" svgClassName="logo" src={'./../../build/assets/ogql.svg'} />
       <h1>Orpheus GQL</h1>
+      <RunButton setDataPoints={props.setDataPoints}
+        codeInput={props.codeInput}
+        buildTreeVis={props.buildTreeVis}
+        storeResponseData={props.storeResponseData}
+        setDatabaseRequests={props.setDatabaseRequests}
+        setDataPoints={props.setDataPoints}
+        setNestingDepth={props.setNestingDepth}
+        setEffectiveRuntime={props.setEffectiveRuntime}
+        setNetworkLatency={props.setNetworkLatency}
+        setResolverNum={props.setResolverNum}
+        setResolverNames={props.setResolverNames}
+      />
     </div>
   )
 };
 
-export default Header;
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

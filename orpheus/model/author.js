@@ -9,6 +9,6 @@ const authorSchema = new Schema({
 // timer for author resolver
 authorSchema.pre('findOne', function(){reqTracker.preRequest(this)});
 authorSchema.post('findOne', function(){
-  reqTracker.postRequest(this, 'authorSchema')});
+reqTracker.postRequest(this, 'authorSchema')});
 
 module.exports = mongoose.model('Author', authorSchema)

@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   background: #e8e8e8;
   font-size: 62.5%;
@@ -8,11 +12,15 @@ body {
   margin: 0;
 }
 
+#root {
+  min-height: 100vh;
+}
+
 #content {
+  height: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 40px;
 }
 
 
