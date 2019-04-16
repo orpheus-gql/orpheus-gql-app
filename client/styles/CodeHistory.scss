@@ -1,0 +1,29 @@
+@import 'variables';
+
+.code-history-wrapper {
+  background: white;
+  width: 230px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-box-shadow: -2px 4px 5px 0px rgba(204,204,204,1);
+  -moz-box-shadow: -2px 4px 5px 0px rgba(204,204,204,1);
+  box-shadow: -2px 4px 5px 0px rgba(204,204,204,1);
+  &.off{
+    display: none;
+  }
+}
+
+.code-history {
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 4px 4px;
+  cursor: pointer;
+  font-weight: 200;
+  border-bottom: 1px solid rgb(0, 200, 200);
+  &:hover{
+    background: rgb(233, 42, 233)
+  }
+}

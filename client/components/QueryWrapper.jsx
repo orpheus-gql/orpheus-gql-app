@@ -15,6 +15,10 @@ const QueryWrapper = props => {
     props.updateCodeInput(newValue);
   }
 
+  function updateCodeHistory(newValue) {
+    props.updateCodeHistory(newValue)
+  }
+
   return (
     <div className="ace-wrapper">
       <AceEditor
@@ -33,8 +37,19 @@ const QueryWrapper = props => {
           useWorker: false,
         }}
       />
-
-
+      <RunButton setDataPoints={props.setDataPoints}
+        codeInput={props.codeInput}
+        updateCodeHistory={updateCodeHistory}
+        buildTreeVis={props.buildTreeVis}
+        storeResponseData={props.storeResponseData}
+        setDatabaseRequests={props.setDatabaseRequests}
+        setDataPoints = {props.setDataPoints}
+        setNestingDepth={props.setNestingDepth}
+        setEffectiveRuntime={props.setEffectiveRuntime}
+        setNetworkLatency={props.setNetworkLatency}
+        setResolverNum={props.setResolverNum}
+        setResolverNames={props.setResolverNames}
+      />
     </div>
   )
 };

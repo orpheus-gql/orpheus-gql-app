@@ -7,6 +7,15 @@ export const updateCodeInput = (value) => ({
   payload: value,
 });
 
+export const updateCodeHistory = (value) => ({
+  type: types.UPDATE_CODE_HISTORY,
+  payload: value,
+})
+
+export const toggleCodeHistory = () => ({
+  type: types.TOGGLE_CODE_HISTORY,
+})
+
 export const buildTreeVis = (value) => ({
   type: types.BUILD_TREE_VIS,
   payload: value,

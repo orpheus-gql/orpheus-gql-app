@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './../styles/Header.scss';
 import RunButton from './RunButton.jsx';
+import HistoryButton from './HistoryButton.jsx'
 
 import * as actions from "../actions/actions";
 import { connect } from 'react-redux';
@@ -21,6 +22,7 @@ const Header = (props) => {
       <h1>Orpheus GQL</h1>
       <RunButton setDataPoints={props.setDataPoints}
         codeInput={props.codeInput}
+        updateCodeHistory={props.updateCodeHistory}
         buildTreeVis={props.buildTreeVis}
         storeResponseData={props.storeResponseData}
         setDatabaseRequests={props.setDatabaseRequests}
@@ -31,6 +33,9 @@ const Header = (props) => {
         setResolverNum={props.setResolverNum}
         setResolverNames={props.setResolverNames}
         setQueryErrorStatus={props.setQueryErrorStatus}
+      />
+      <HistoryButton
+        toggleCodeHistory={props.toggleCodeHistory}
       />
     </div>
   )
