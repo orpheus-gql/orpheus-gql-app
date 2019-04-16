@@ -14,6 +14,7 @@ const initialState = {
     visObj: {}
   },
   networkLatency: null,
+  queryError: false,
 }
 
 const appReducer = (state = initialState, action) => {
@@ -101,6 +102,12 @@ const appReducer = (state = initialState, action) => {
           ...state.dataVis,
           resolverNames: action.payload
         }
+      }
+
+    case types.SET_QUERY_ERROR_STATUS:
+      return {
+        ...state,
+        queryError: action.payload
       }
 
     default:
