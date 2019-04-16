@@ -33,7 +33,7 @@ const RunButton = props => {
         props.setEffectiveRuntime((myJson.extensions.runTime / 1000).toFixed(1))
 
       });
-  };
+  });
 
   return (
     <React.Fragment>
