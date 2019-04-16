@@ -60,3 +60,8 @@ export const setResolverNames = (value) => ({
   type: types.SET_RESOLVER_NAMES,
   payload: value,
 });
+
+export const setQueryErrorStatus = (value) => ({
+  type: types.SET_QUERY_ERROR_STATUS,
+  payload: value,
+})

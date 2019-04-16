@@ -4,7 +4,7 @@ const schema = require('./schema/schema');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const NetworkConstructor = require('./orpheus/ping');
-
+const orpheusGQL = require('./orpheus')
 const orpheusContext = require('./orpheus/context');
 const orpheusExtension = require('./orpheus/extension');
 require('dotenv').config();
@@ -30,6 +30,8 @@ app.use('/graphql', graphqlHTTP(request => {
     extensions: orpheusExtension
   }
 }));
+
+app.get('/orpheus', orpheusGQL);
 
 app.listen(3500, () => {
   console.log('now listening for requests on port 3500')
