@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './../styles/Header.scss';
 import RunButton from './RunButton.jsx';
+import HistoryButton from './HistoryButton.jsx'
 
 import * as actions from "../actions/actions";
 import { connect } from 'react-redux';
@@ -31,6 +32,9 @@ const Header = (props) => {
         setNetworkLatency={props.setNetworkLatency}
         setResolverNum={props.setResolverNum}
         setResolverNames={props.setResolverNames}
+      />
+      <HistoryButton
+        toggleCodeHistory={props.toggleCodeHistory}
       />
     </div>
   )

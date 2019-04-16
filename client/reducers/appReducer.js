@@ -3,6 +3,7 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   codeInput: '',
   codeHistory: [],
+  showHistory: false,
   dataResults: {
     'Data Points': null,
     'Nesting Depth': null,
@@ -27,14 +28,21 @@ const appReducer = (state = initialState, action) => {
       }
     
     case types.UPDATE_CODE_HISTORY:
-      let codeHistory = state.codeHistory
-      let code = action.payload
+      let codeHistory = [...state.codeHistory];
+      let code = action.payload;
       if(codeHistory.indexOf(code) === -1) {
-        codeHistory.push(code)
+        codeHistory.unshift(code)
       }
       return {
         ...state,
         codeHistory
+      }
+    
+    case types.TOGGLE_CODE_HISTORY:
+      let showHistory = !state.showHistory
+      return {
+        ...state,
+        showHistory
       }
 
     case types.BUILD_TREE_VIS:

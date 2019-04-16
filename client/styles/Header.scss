@@ -8,7 +8,10 @@
   background: #fff;  /* fallback for old browsers */
   max-height: 48px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
 
 
   h1 {

@@ -12,6 +12,10 @@ export const updateCodeHistory = (value) => ({
   payload: value,
 })
 
+export const toggleCodeHistory = () => ({
+  type: types.TOGGLE_CODE_HISTORY,
+})
+
 export const buildTreeVis = (value) => ({
   type: types.BUILD_TREE_VIS,
   payload: value,

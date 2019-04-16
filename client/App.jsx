@@ -9,10 +9,11 @@ import styles from './styles/App.scss';
 import Header from './components/Header.jsx';
 import QueryContainer from './containers/QueryContainer.jsx'
 import ResultsContainer from './containers/ResultsContainer.jsx';
+import CodeHistoryContainer from './containers/CodeHistory.jsx';
 
 const mapStateToProps = (store) => ({
   codeInput: store.app.codeInput,
-  dataVis: store.app.dataVis,
+  dataVis: store.app.dataVis
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
@@ -24,6 +25,7 @@ const App = props => {
       <div id="content">
         <QueryContainer />
         <ResultsContainer />
+        <CodeHistoryContainer />
       </div>
     </React.Fragment>
   )

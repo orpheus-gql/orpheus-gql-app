@@ -78,7 +78,7 @@ function DataVis(props) {
   return (
     <div className="sunburst-wrapper"
       onMouseOver={(data) => {
-        console.log(data);
+        // console.log(data);
         setHoverState(!hoverState)
       }} >
 
