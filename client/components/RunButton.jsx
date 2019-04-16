@@ -7,14 +7,15 @@ import styles from './../styles/RunButton.scss';
 
 const RunButton = props => {
 
-  const sendQuery = () => new Promise((resolve, reject) => {
+  const sendQuery = (resolve, reject) => {
     const code = props.codeInput;
-    const context = `&context={startTime: Date.now()}`;
-    fetch(`http://localhost:3500/graphql?query=` + code + context)
+    fetch(`http://localhost:3500/graphql?query=` + code)
       .then(function (response) {
         if (response.status !== 200) {
-          return window.alert('Please refactor your query')
+          props.setQueryErrorStatus(true);
+          return
         }
+        props.setQueryErrorStatus(false)
         return response.json();
       })
       .then(function (myJson) {
@@ -26,9 +27,9 @@ const RunButton = props => {
         props.setDataPoints(dpc.dataPoints)
         props.setNestingDepth(dpc.nestingDepth)
         props.setEffectiveRuntime((myJson.extensions.runTime / 1000).toFixed(1))
-        resolve();
+
       });
-  });
+  };
 
   const getResults = () => new Promise((resolve, reject) => {
     fetch(`http://localhost:3500/requests`)
@@ -79,8 +80,8 @@ const RunButton = props => {
 
   return (
     <React.Fragment>
-      <button className="run" onClick={async () => {
-        await sendQuery();
+      <button className="run" onClick={(e) => {
+        sendQuery();
       }
       }>Run</button>
     </React.Fragment>

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import DataVis from '../components/DataVis.jsx';
 import ResultItemNum from './../components/ResultItemNum.jsx'
+import QueryError from './../components/QueryError.jsx'
 
 import styles from './../styles/ResultsContainer.scss'
 
@@ -11,7 +12,8 @@ const mapStateToProps = (store) => ({
   codeInput: store.app.codeInput,
   dataResults: store.app.dataResults,
   networkLatency: store.app.networkLatency,
-  visObj: store.app.dataVis.visObj
+  visObj: store.app.dataVis.visObj,
+  queryError: store.app.queryError,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
@@ -45,6 +47,10 @@ const ResultsContainer = props => {
   return (
     <React.Fragment>
       <div id="results-container">
+        {props.queryError ? <div id="error">
+          <QueryError />
+        </div> : ''}
+
         <DataVis visObj={props.visObj} />
         <div id="result-nums" className={(props.dataResults["Data Points"] ? '' : 'off')}>
           {resultsArr}

@@ -30,6 +30,7 @@ const Header = (props) => {
         setNetworkLatency={props.setNetworkLatency}
         setResolverNum={props.setResolverNum}
         setResolverNames={props.setResolverNames}
+        setQueryErrorStatus={props.setQueryErrorStatus}
       />
     </div>
   )
