@@ -13,7 +13,7 @@ const RunButton = props => {
   
   const sendQuery = () => new Promise((resolve, reject) => {
     const code = props.codeInput;
-    fetch(`http://localhost:3500/graphql?query=` + code)
+    fetch(`${__gqlapi}?query=` + code)
       .then(function (response) {
         if (response.status !== 200) {
           props.setQueryErrorStatus(true);
