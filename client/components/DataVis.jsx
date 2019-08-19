@@ -17,7 +17,6 @@ const makeVisFlexible = Component => {
 
     constructor(props) {
       super(props);
-
       this.state = {
         height: 0,
         width: 0
@@ -26,9 +25,7 @@ const makeVisFlexible = Component => {
 
     componentDidMount() {
       this.setSize();
-
       this.observer = new ResizeObserver(() => this.setSize());
-
       this.observer.observe(this.node);
     }
 
@@ -38,7 +35,6 @@ const makeVisFlexible = Component => {
 
     setSize = () => {
       const { height, width } = this.node.getBoundingClientRect();
-
       this.setState({ height, width });
     };
 
@@ -80,9 +76,6 @@ function DataVis(props) {
       onMouseOver={(data) => {
         setHoverState(!hoverState)
       }} >
-
-
-
       <FlexibleSunburst
         padAngle={0.01}
         hideRootNode
@@ -104,9 +97,6 @@ function DataVis(props) {
         }
         }
       />
-
-
-
     </div >
   );
 }
