@@ -33,13 +33,10 @@ const RunButton = props => {
   });
 
   return (
-    <React.Fragment>
       <button className="run" onClick={async () => {
         await updateCodeHistory();
         await sendQuery();
-      }
-      }>Run</button>
-    </React.Fragment>
+      }}>Run</button>
   )
 }
 
