@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import DataParser from '../controllers/DataParser';
-let dpc = new DataParser();
 import styles from './../styles/RunButton.scss';
+let dpc = new DataParser();
 
-const RunButton = props => {
-  const updateCodeHistory = () => new Promise((resolve, reject) => {
-    props.updateCodeHistory(props.codeInput);
-    resolve();
-  }); 
-  
-  const sendQuery = () => new Promise((resolve, reject) => {
+const RunButton = (props) => {  
+  const sendQuery = () => {
     const code = props.codeInput;
     fetch(`${__gqlapi}?query=` + code)
       .then(function (response) {
@@ -30,12 +25,12 @@ const RunButton = props => {
         props.setNestingDepth(dpc.nestingDepth)
         props.setEffectiveRuntime((myJson.extensions.runTime / 1000).toFixed(1))
       });
-  });
+  };
 
   return (
       <button className="run" onClick={async () => {
-        await updateCodeHistory();
-        await sendQuery();
+        props.updateCodeHistory();
+        sendQuery();
       }}>Run</button>
   )
 }
