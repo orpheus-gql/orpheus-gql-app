@@ -81,7 +81,6 @@ function DataVis(props) {
         hideRootNode
         colorType='literal'
         data={props.visObj}
-
         animation='true'
         className='sunburst'
         getLabel={d=>d.name}
