@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-
 import DataParser from '../controllers/DataParser';
 let dpc = new DataParser();
-
 import styles from './../styles/RunButton.scss';
 
 const RunButton = props => {
@@ -31,7 +29,6 @@ const RunButton = props => {
         props.setDataPoints(dpc.dataPoints)
         props.setNestingDepth(dpc.nestingDepth)
         props.setEffectiveRuntime((myJson.extensions.runTime / 1000).toFixed(1))
-
       });
   });
 
@@ -45,4 +42,5 @@ const RunButton = props => {
     </React.Fragment>
   )
 }
+
 export default RunButton;
