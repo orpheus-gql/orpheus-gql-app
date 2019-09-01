@@ -1,4 +1,3 @@
-
 const renderOrpheusGQL = () => {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -16,13 +15,12 @@ const renderOrpheusGQL = () => {
   <script src="/build/bundle.js"></script>
 </body>
 
-</html>`
-}
+</html>`;
+};
 
 const orpheusGQL = (request, response) => {
-  response.set('Content-Type', 'text/html')
+  response.set('Content-Type', 'text/html');
   response.send(renderOrpheusGQL());
-}
+};
 
 module.exports = orpheusGQL;
-

@@ -14,10 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/orpheus-gql/orpheus-gql-app.git"
   },
-  "keywords": [
-    "GraphQL",
-    "Testing"
-  ],
+  "keywords": ["GraphQL", "Testing"],
   "author": "Nisha Chatterjee, Eric Tang, Wisdom Liu, Shane Taylor",
   "license": "MIT",
   "bugs": {
@@ -44,6 +41,7 @@
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",
     "graphql": "^14.2.1",
+    "http": "0.0.0",
     "identity-obj-proxy": "^3.0.0",
     "lodash": "^4.17.11",
     "mongoose": "^5.4.20",
@@ -59,6 +57,7 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "resize-observer-polyfill": "^1.5.1",
+    "tar": "^4.4.8",
     "webpack": "^4.29.6"
   },
   "devDependencies": {

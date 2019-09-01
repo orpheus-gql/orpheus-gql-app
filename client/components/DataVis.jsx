@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import ResizeObserver from 'resize-observer-polyfill';
-import { Sunburst, Treemap, Hint } from 'react-vis';
-import { AutoSizer } from 'react-virtualized';
+import {Sunburst, Treemap, Hint} from 'react-vis';
+import {AutoSizer} from 'react-virtualized';
 import styles from './../styles/DataVis.scss';
 
 const makeVisFlexible = Component => {
@@ -10,16 +10,18 @@ const makeVisFlexible = Component => {
     static propTypes = {
       ...Component.propTypes,
       height: PropTypes.number,
-      width: PropTypes.number
+      width: PropTypes.number,
     };
 
-    static displayName = `Flexible${Component.displayName || Component.name || 'Component'}`;
+    static displayName = `Flexible${Component.displayName ||
+      Component.name ||
+      'Component'}`;
 
     constructor(props) {
       super(props);
       this.state = {
         height: 0,
-        width: 0
+        width: 0,
       };
     }
 
@@ -34,12 +36,13 @@ const makeVisFlexible = Component => {
     }
 
     setSize = () => {
-      const { height, width } = this.node.getBoundingClientRect();
-      this.setState({ height, width });
+      const {height, width} = this.node.getBoundingClientRect();
+
+      this.setState({height, width});
     };
 
     render() {
-      const { height, width } = this.state;
+      const {height, width} = this.state;
 
       return (
         <div
@@ -48,8 +51,7 @@ const makeVisFlexible = Component => {
               this.node = node;
             }
           }}
-          style={{ width: '100%', height: '100%' }}
-        >
+          style={{width: '100%', height: '100%'}}>
           <Component height={height} width={width} {...this.props} />
         </div>
       );
@@ -62,41 +64,41 @@ const STYLES = {
   SVG: {
     stroke: '#ddd',
     strokeWidth: '0.25',
-    strokeOpacity: 0.5
+    strokeOpacity: 0.5,
   },
   DOM: {
-    border: 'thin solid #ddd'
-  }
+    border: 'thin solid #ddd',
+  },
 };
 
 function DataVis(props) {
   const [hoverState, setHoverState] = useState(false);
   return (
-    <div className="sunburst-wrapper"
-      onMouseOver={(data) => {
-        setHoverState(!hoverState)
-      }} >
+    <div
+      className="sunburst-wrapper"
+      onMouseOver={data => {
+        setHoverState(!hoverState);
+      }}>
       <FlexibleSunburst
         padAngle={0.01}
         hideRootNode
-        colorType='literal'
+        colorType="literal"
         data={props.visObj}
-        animation='true'
-        className='sunburst'
-        getLabel={d=>d.name}
+        animation="true"
+        className="sunburst"
+        getLabel={d => d.name}
         getSize={d => d.value}
         getColor={d => {
           if (d.value === undefined) {
-            return 'rgba(0,0,0,0)'
+            return 'rgba(0,0,0,0)';
           }
           const r = d.value * 100;
           const g = 200;
           const b = 200;
-          return `rgb(${r},${g},${b})`
-        }
-        }
+          return `rgb(${r},${g},${b})`;
+        }}
       />
-    </div >
+    </div>
   );
 }
 
