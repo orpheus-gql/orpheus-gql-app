@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 
 import DataParser from '../controllers/DataParser';
-let dpc = new DataParser();
-
 import styles from './../styles/RunButton.scss';
+let dpc = new DataParser();
 
 const RunButton = props => {
   const updateCodeHistory = () =>
@@ -39,16 +38,14 @@ const RunButton = props => {
     });
 
   return (
-    <React.Fragment>
-      <button
-        className="run"
-        onClick={async () => {
-          await updateCodeHistory();
-          await sendQuery();
-        }}>
-        Run
-      </button>
-    </React.Fragment>
+    <button
+      className="run"
+      onClick={async () => {
+        await updateCodeHistory();
+        await sendQuery();
+      }}>
+      Run
+    </button>
   );
 };
 export default RunButton;

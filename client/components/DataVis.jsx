@@ -19,7 +19,6 @@ const makeVisFlexible = Component => {
 
     constructor(props) {
       super(props);
-
       this.state = {
         height: 0,
         width: 0,
@@ -28,9 +27,7 @@ const makeVisFlexible = Component => {
 
     componentDidMount() {
       this.setSize();
-
       this.observer = new ResizeObserver(() => this.setSize());
-
       this.observer.observe(this.node);
     }
 
