@@ -7,16 +7,15 @@ import 'brace/theme/gruvbox';
 
 import styles from './../styles/QueryWrapper.scss';
 
-import RunButton from './RunButton.jsx'
+import RunButton from './RunButton.jsx';
 
 const QueryWrapper = props => {
-
   function onChange(newValue) {
     props.updateCodeInput(newValue);
   }
 
   function updateCodeHistory(newValue) {
-    props.updateCodeHistory(newValue)
+    props.updateCodeHistory(newValue);
   }
 
   return (
@@ -37,13 +36,14 @@ const QueryWrapper = props => {
           useWorker: false,
         }}
       />
-      <RunButton setDataPoints={props.setDataPoints}
+      <RunButton
+        setDataPoints={props.setDataPoints}
         codeInput={props.codeInput}
         updateCodeHistory={updateCodeHistory}
         buildTreeVis={props.buildTreeVis}
         storeResponseData={props.storeResponseData}
         setDatabaseRequests={props.setDatabaseRequests}
-        setDataPoints = {props.setDataPoints}
+        setDataPoints={props.setDataPoints}
         setNestingDepth={props.setNestingDepth}
         setEffectiveRuntime={props.setEffectiveRuntime}
         setNetworkLatency={props.setNetworkLatency}
@@ -51,7 +51,7 @@ const QueryWrapper = props => {
         setResolverNames={props.setResolverNames}
       />
     </div>
-  )
+  );
 };
 
 export default QueryWrapper;

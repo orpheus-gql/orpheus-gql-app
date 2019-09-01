@@ -1,26 +1,27 @@
 import React from 'react';
 import styles from './../styles/Header.scss';
 import RunButton from './RunButton.jsx';
-import HistoryButton from './HistoryButton.jsx'
+import HistoryButton from './HistoryButton.jsx';
 
-import * as actions from "../actions/actions";
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import * as actions from '../actions/actions';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-const mapStateToProps = (store) => ({
+const mapStateToProps = store => ({
   codeInput: store.app.codeInput,
   dataResults: store.app.dataResults,
   networkLatency: store.app.networkLatency,
-  visObj: store.app.dataVis.visObj
-})
+  visObj: store.app.dataVis.visObj,
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
-const Header = (props) => {
+const Header = props => {
   return (
     <div id="header">
       <h1>Orpheus GQL</h1>
-      <RunButton setDataPoints={props.setDataPoints}
+      <RunButton
+        setDataPoints={props.setDataPoints}
         codeInput={props.codeInput}
         updateCodeHistory={props.updateCodeHistory}
         buildTreeVis={props.buildTreeVis}
@@ -34,11 +35,12 @@ const Header = (props) => {
         setResolverNames={props.setResolverNames}
         setQueryErrorStatus={props.setQueryErrorStatus}
       />
-      <HistoryButton
-        toggleCodeHistory={props.toggleCodeHistory}
-      />
+      <HistoryButton toggleCodeHistory={props.toggleCodeHistory} />
     </div>
-  )
+  );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Header);

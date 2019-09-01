@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import * as actions from "./actions/actions";
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, {Component} from 'react';
+import * as actions from './actions/actions';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 // import styles
 import styles from './styles/App.scss';
 
 import Header from './components/Header.jsx';
-import QueryContainer from './containers/QueryContainer.jsx'
+import QueryContainer from './containers/QueryContainer.jsx';
 import ResultsContainer from './containers/ResultsContainer.jsx';
 import CodeHistoryContainer from './containers/CodeHistory.jsx';
 
-const mapStateToProps = (store) => ({
+const mapStateToProps = store => ({
   codeInput: store.app.codeInput,
-  dataVis: store.app.dataVis
-})
+  dataVis: store.app.dataVis,
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
@@ -28,6 +28,9 @@ const App = props => {
         <CodeHistoryContainer />
       </div>
     </React.Fragment>
-  )
-}
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+  );
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);

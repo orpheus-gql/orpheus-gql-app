@@ -6,7 +6,7 @@ module.exports = {
   entry: ['babel-polyfill', path.resolve('./client', 'index.js')],
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
 
   module: {
@@ -19,21 +19,17 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react'],
-            plugins: ['@babel/plugin-proposal-class-properties']
-          }
-        }
+            plugins: ['@babel/plugin-proposal-class-properties'],
+          },
+        },
       },
       {
         test: /\.scss$/,
         include: CLIENT_DIR,
         exclude: /(node_modules|bower_components)/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
-    ]
+    ],
   },
   devServer: {
     publicPath: '/build',
@@ -41,9 +37,9 @@ module.exports = {
     port: 8080,
     proxy: {
       '/orpheus': {
-        target: "http://localhost:3500",
-        pathRewrite: { '^/orpheus': '' }
-      }
-    }
-  }
+        target: 'http://localhost:3500',
+        pathRewrite: {'^/orpheus': ''},
+      },
+    },
+  },
 };
